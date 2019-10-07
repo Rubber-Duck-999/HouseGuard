@@ -1,5 +1,5 @@
 //============================================================================
-// Name        : SystemController.cpp
+// Name        : CameraMonitor.cpp
 // Author      : Rubberdinghy911
 // Version     :
 // Copyright   : Your copyright notice
