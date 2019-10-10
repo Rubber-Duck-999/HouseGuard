@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++17 -O3 -Wall   CMakeFiles/exeCameraMonitor.dir/src/main.cc.o  -o exeCameraMonitor  -L/usr/local/lib 
