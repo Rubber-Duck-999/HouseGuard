@@ -16,12 +16,12 @@ import sys, time
 ## Setup connection and exchange
 connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
-channel.exchange_declare(exchange='topics', exchange_type='topic')
+channel.exchange_declare(exchange='topics', exchange_type='topic', durable=False)
 #
 
 # Specific settings for subscribe key
 print("## Beginning CM Component")
-result = channel.queue_declare('', exclusive=True)
+result = channel.queue_declare('', exclusive=False, durable=False)
 queue_name = result.method.queue
 binding_key = 'motion.request'
 channel.queue_bind(exchange='topics', queue=queue_name, routing_key=binding_key)

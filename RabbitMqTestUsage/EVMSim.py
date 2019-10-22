@@ -17,7 +17,7 @@ import sys, time
 print("## Beginning EVM")
 connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
-channel.exchange_declare(exchange='topics', exchange_type='topic')
+channel.exchange_declare(exchange='topics', exchange_type='topic', durable=False)
 routing_key = 'motion.request'
 #
 
@@ -26,9 +26,15 @@ message = 'Was there motion?'
 print("My sensors have detected a motion, will confirm with CM")
 print("Sending motion request to CM")
 time.sleep(1)
-channel.basic_publish(exchange='topics', routing_key=routing_key, body=message)
+channel.basic_publish(
+    exchange='topics', 
+    routing_key=routing_key, 
+    body=message,
+    properties=pika.BasicProperties(
+        delivery_mode=2,  # make message persistent
+    ))
 #print(" [x] Sent %r:%r" % (routing_key, message))
-result = channel.queue_declare('', exclusive=True)
+result = channel.queue_declare('', exclusive=False, durable=True)
 #
 
 #
@@ -49,7 +55,8 @@ def callback(ch, method, properties, body):
     channel.queue_bind(exchange='topics', queue=queue_name, routing_key=key)
     channel.basic_publish(exchange='topics', routing_key=key, body='motion_detected')
     #print(" [x] Sent %r:%r" % (key, ':motion_detected'))
+    channel.basic_ack(delivery_tag=method.delivery_tag)
     sys.exit()
 
-channel.basic_consume(queue=queue_name, on_message_callback=callback, auto_ack=True)
+channel.basic_consume(queue=queue_name, on_message_callback=callback, auto_ack=False)
 channel.start_consuming()
