@@ -33,7 +33,7 @@ def callback(ch, method, properties, body):
     time.sleep(2)
     routing_key = 'database.failure'
     print("We have an error, send help!")
-    channel.basic_publish(exchange='topic_logs', routing_key=routing_key, body='failure:DBM')
+    #channel.basic_publish(exchange='topic_logs', routing_key=routing_key, body='failure:DBM')
     print(" [x] Sent %r:%r" % (routing_key, 'failure:DBM'))
 
 channel.basic_consume(queue=queue_name, on_message_callback=callback, auto_ack=True)
