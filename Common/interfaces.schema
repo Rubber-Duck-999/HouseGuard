@@ -1,0 +1,269 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "weather": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "number"
+        },
+        "longitude": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "city",
+        "latitude",
+        "longitude"
+      ]
+    },
+    "event": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        },
+        "severity": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "component",
+        "time",
+        "error",
+        "severity"
+      ]
+    },
+    "motion.response": {
+      "type": "integer"
+    },
+    "motion.detected": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "time"
+      ]
+    },
+    "failure": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "time",
+        "type"
+      ]
+    },
+    "request.image": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "integer"
+        },
+        "time_from": {
+          "type": "string"
+        },
+        "time_to": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "request_id",
+        "time_from",
+        "time_to"
+      ]
+    },
+    "request.data": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "integer"
+        },
+        "time_from": {
+          "type": "string"
+        },
+        "time_to": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "request_id",
+        "time_from",
+        "time_to",
+        "type"
+      ]
+    },
+    "request.database": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "integer"
+        },
+        "time_from": {
+          "type": "string"
+        },
+        "time_to": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "request_id",
+        "time_from",
+        "time_to",
+        "type"
+      ]
+    },
+    "request.power": {
+      "type": "object",
+      "properties": {
+        "power": {
+          "type": "string"
+        },
+        "severity": {
+          "type": "integer"
+        },
+        "components": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "required": [
+        "power",
+        "severity",
+        "components"
+      ]
+    },
+    "request.access": {
+      "type": "object",
+      "properties": {
+        "pin": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "pin"
+      ]
+    },
+    "access.response": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "result"
+      ]
+    },
+    "monitor.update": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "state"
+      ]
+    },
+    "monitor.state": {
+      "type": "boolean"
+    },
+    "data.info": {
+      "type": "object",
+      "properties": {
+        "format": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "format",
+        "path"
+      ]
+    },
+    "issue.notice": {
+      "type": "object",
+      "properties": {
+        "severity": {
+          "type": "integer"
+        },
+        "component": {
+          "type": "string"
+        },
+        "action": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "severity",
+        "component",
+        "action"
+      ]
+    },
+    "power.notice": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string"
+        },
+        "restart": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "component",
+        "restart"
+      ]
+    },
+    "failure.component": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string"
+        },
+        "severity": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "component",
+        "severity"
+      ]
+    }
+  }
+}

@@ -9,7 +9,7 @@ import pika
 import sys, time
 
 ###
-# Environment Manager Simulator Interface 
+# Environment Manager Simulator Interface
 # This is to show how the EVM could manager
 # its necessary pub & sub topics with rabbitmq
 
@@ -18,7 +18,6 @@ print("## Beginning EVM")
 connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
 channel.exchange_declare(exchange='topics', exchange_type='topic', durable=False)
-routing_key = 'motion.request'
 #
 
 # Publishing
@@ -26,14 +25,6 @@ message = 'Was there motion?'
 print("My sensors have detected a motion, will confirm with CM")
 print("Sending motion request to CM")
 time.sleep(1)
-channel.basic_publish(
-    exchange='topics', 
-    routing_key=routing_key, 
-    body=message,
-    properties=pika.BasicProperties(
-        delivery_mode=2,  # make message persistent
-    ))
-#print(" [x] Sent %r:%r" % (routing_key, message))
 result = channel.queue_declare('', exclusive=False, durable=True)
 #
 

@@ -17,9 +17,8 @@ join(InIter begin, InIter end, std::string delim)
 
 int main(int argc, const char* argv[])
 {
-    const std::string routing_key = argc > 2 ? argv[1] : "event.CM";
-    const std::string msg =
-            argc > 2 ? join(&argv[2], &argv[argc], " ") : "Hello World!";
+    const std::string routing_key = "motion.response";
+    const std::string msg = "Motion Detected on CM";
 
     auto evbase = event_base_new();
     LibEventHandlerMyError handler(evbase);
@@ -51,5 +50,3 @@ int main(int argc, const char* argv[])
     event_base_free(evbase);
     return 0;
 }
-
-
