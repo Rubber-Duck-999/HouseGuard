@@ -40,7 +40,9 @@ def callback(ch, method, properties, body):
     time.sleep(0.5)
     print("Sending warning to UP")
     channel.queue_bind(exchange='topics', queue=queue_name, routing_key=key)
-    channel.basic_publish(exchange='topics', routing_key=key, body='FAIL')
+    x = True
+    while x:
+        channel.basic_publish(exchange='topics', routing_key=key, body='FAIL')
     sys.exit()
 
 channel.basic_consume(queue=queue_name, on_message_callback=callback, auto_ack=False)

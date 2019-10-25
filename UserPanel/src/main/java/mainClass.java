@@ -1,16 +1,34 @@
+package com;
+
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
+
+import java.util.logging.Logger;
 
 public class mainClass
 {
 
     private static final String EXCHANGE_NAME = "topics";
     private static ConnectionFactory factory;
+    private static Model myModel;
+    private static View myView;
+    private static Controller myController;
+
+    public static void startUI()
+    {
+        int start_value = 10;
+        myModel = new Model();
+        myView = new View();
+        myController = new Controller(myModel, myView);
+        myController.initmodel(start_value);
+        myView.addController(myController);
+    }
 
     public static void main(String[] argv) throws Exception
     {
+        startUI();
         factory = new ConnectionFactory();
         factory.setHost("localhost");
         Connection connection = factory.newConnection();
@@ -33,10 +51,11 @@ public class mainClass
             if(!received.equals("PASS"))
             {
                 String pubRoutingKey = "event.UP";
+                myModel.setMessageReceived(received);
                 String pubMessage = "We have access denied at 14:00";
                 channel.basicPublish(EXCHANGE_NAME, pubRoutingKey, null, pubMessage.getBytes("UTF-8"));
             }
-            System.exit(1);
+            //System.exit(1);
         };
         channel.basicConsume(queueName, true, deliverCallback, consumerTag -> { });
     }
