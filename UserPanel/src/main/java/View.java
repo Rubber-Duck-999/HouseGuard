@@ -2,8 +2,10 @@ package com;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.*;
 
 import javax.swing.JButton;
@@ -12,103 +14,179 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import java.util.logging.Logger;
+import javax.swing.SwingConstants;
 
 public class View
 {
-  private JFrame frame;
-  private JPanel buttonPanel, fieldPanel;
-  private JLabel counter, check;
-  private JTextField textField, inputField;
-  private JButton addButton, minusButton, checkFileButton;
+	private JFrame frame;
+	private JPanel buttonPanel, fieldPanel;
+	private JLabel passFieldDigit1, passFieldDigit2, passFieldDigit3, passFieldDigit4;
+	private JButton addButtonD1, subButtonD1;
+	private JButton addButtonD2, subButtonD2;
+	private JButton addButtonD3, subButtonD3;
+	private JButton addButtonD4, subButtonD4;
+	private JButton enter;
+	private Font buttonFont;
 
-  View()//(Logger log)
-  {
-    //log.finest("Starting View");
-    frame = new JFrame("User Panel");
-    buttonPanel = new JPanel();
-    fieldPanel = new JPanel();
+	View()
+	{
+		frame = new JFrame("Simple MVC");
+		buttonPanel = new JPanel();
+		fieldPanel = new JPanel();
 
-    counter = new JLabel("Counter");
-    check = new JLabel("Check File");
+		passFieldDigit1 = new JLabel("", SwingConstants.CENTER);
+		passFieldDigit2 = new JLabel("", SwingConstants.CENTER);
+		passFieldDigit3 = new JLabel("", SwingConstants.CENTER);
+		passFieldDigit4 = new JLabel("", SwingConstants.CENTER);
 
-    textField = new JTextField("");
+		addButtonD1 = new JButton("+");
+		subButtonD1 = new JButton("-");
 
-    addButton = new JButton("Add");
-    minusButton = new JButton("Sub");
-    checkFileButton = new JButton("Check if exists");
+		addButtonD2 = new JButton("+");
+		subButtonD2 = new JButton("-");
 
-    fieldPanel.setLayout(new GridBagLayout());
-    GridBagConstraints gbc = new GridBagConstraints();
+		addButtonD3 = new JButton("+");
+		subButtonD3 = new JButton("-");
 
-    gbc.fill = GridBagConstraints.HORIZONTAL;
-    gbc.gridx = 0;
-    gbc.gridy = 0;
-    fieldPanel.add(counter, gbc);
+		addButtonD4 = new JButton("+");
+		subButtonD4 = new JButton("-");
 
-    gbc.gridx = 0;
-    gbc.gridy = 1;
-    fieldPanel.add(textField, gbc);
+		buttonPanel.add(addButtonD1);
+		buttonPanel.add(addButtonD2);
+		buttonPanel.add(addButtonD3);
+		buttonPanel.add(addButtonD4);
+		buttonPanel.add(subButtonD1);
+		buttonPanel.add(subButtonD2);
+		buttonPanel.add(subButtonD3);
+		buttonPanel.add(subButtonD4);
 
-    gbc.gridx = 1;
-    gbc.gridy = 0;
-    fieldPanel.add(check, gbc);
+		enter = new JButton("Enter");
+		enter.setFont(new Font("Calibri", Font.BOLD, 28));
+		buttonPanel.setLayout(new GridLayout(2,4));
 
-    buttonPanel.setLayout(new FlowLayout());
-    buttonPanel.add(addButton);
-    buttonPanel.add(minusButton);
-    buttonPanel.add(checkFileButton);
+		setButtonFont();
+		setLabelFont();
 
-    frame.add(fieldPanel, BorderLayout.PAGE_START);
-    frame.add(buttonPanel, BorderLayout.PAGE_END);
+		fieldPanel.setLayout(new GridLayout(1,2));
+		fieldPanel.add(passFieldDigit1);
+		fieldPanel.add(passFieldDigit2);
+		fieldPanel.add(passFieldDigit3);
+		fieldPanel.add(passFieldDigit4);
 
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setSize(640,480);
-    frame.pack();
-    frame.setVisible(true);
-  }
+		frame.add(fieldPanel, BorderLayout.NORTH);
+		frame.add(buttonPanel, BorderLayout.CENTER);
+		frame.add(enter, BorderLayout.SOUTH);
 
-  public void setNewFrame(boolean visible)
-  {
-    //log.info("Set New Frame = " + visible);
-  }
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		//frame.setUndecorated(true);
+		frame.setSize(640,480);
+		frame.pack();
+		frame.setVisible(true);
+	}
 
-  public < E > void setNewValue(E v)
-  {
-    //log.info("Set Value");
-    textField.setText("" + v);
-  }
+	public void setNewFrame(boolean visible)
+	{
+		//log.info("Set New Frame = " + visible);
+	}
 
-  public void addCheckListener(ActionListener listenForCheckButton)
-  {
-    //log.info("Adding Check Listener");
-    checkFileButton.setActionCommand(types.Actions.CHECK.name());
-    checkFileButton.addActionListener(listenForCheckButton);
-  }
+	private void setLabelFont()
+	{
+		buttonFont = new Font("Calibri", Font.BOLD, 128);
+		passFieldDigit1.setFont(buttonFont);
+		passFieldDigit2.setFont(buttonFont);
+		passFieldDigit3.setFont(buttonFont);
+		passFieldDigit4.setFont(buttonFont);
+	}
 
-  public void addController(ActionListener listenerButtons)
-  {
-    //log.info("Adding Controller to View");
-    addButton.setActionCommand(types.Actions.ADD.name());
-    minusButton.setActionCommand(types.Actions.MINUS.name());
-    addButton.addActionListener(listenerButtons);
-    minusButton.addActionListener(listenerButtons);
-  }
+	private void setButtonFont()
+	{
+		buttonFont = new Font("Calibri", Font.BOLD, 40);
+		addButtonD1.setFont(buttonFont);
+		subButtonD1.setFont(buttonFont);
 
-  public void displayErrorMessage(String message)
-  {
-    JOptionPane.showMessageDialog(frame, "Error: " + message, "Error", JOptionPane.ERROR_MESSAGE);
-  }
+		addButtonD2.setFont(buttonFont);
+		subButtonD2.setFont(buttonFont);
 
-  public static class CloseListener extends WindowAdapter
-  {
-    public void windowClosing(WindowEvent e)
-    {
-      e.getWindow().setVisible(false);
-      System.exit(0);
-    }
-  }
+		addButtonD3.setFont(buttonFont);
+		subButtonD3.setFont(buttonFont);
 
+		addButtonD4.setFont(buttonFont);
+		subButtonD4.setFont(buttonFont);
+	}
 
+	public < E > void setDigit1(E v)
+	{
+		System.out.println(v);
+		passFieldDigit1.setText("" + v);
+	}
+
+	public < E > void setDigit2(E v)
+	{
+		passFieldDigit2.setText("" + v);
+	}
+
+	public < E > void setDigit3(E v)
+	{
+		passFieldDigit3.setText("" + v);
+	}
+
+	public < E > void setDigit4(E v)
+	{
+		passFieldDigit4.setText("" + v);
+	}
+
+	public < E > void setDigits(E v)
+	{
+		passFieldDigit1.setText("" + v);
+		passFieldDigit2.setText("" + v);
+		passFieldDigit3.setText("" + v);
+		passFieldDigit4.setText("" + v);
+	}
+
+	public void addController(ActionListener listenerButtons)
+	{
+		addButtonD1.setActionCommand(Types.Actions.ADD_D1.name());
+		subButtonD1.setActionCommand(Types.Actions.SUB_D1.name());
+		addButtonD1.addActionListener(listenerButtons);
+		subButtonD1.addActionListener(listenerButtons);
+
+		addButtonD2.setActionCommand(Types.Actions.ADD_D2.name());
+		subButtonD2.setActionCommand(Types.Actions.SUB_D2.name());
+		addButtonD2.addActionListener(listenerButtons);
+		subButtonD2.addActionListener(listenerButtons);
+
+		addButtonD3.setActionCommand(Types.Actions.ADD_D3.name());
+		subButtonD3.setActionCommand(Types.Actions.SUB_D3.name());
+		addButtonD3.addActionListener(listenerButtons);
+		subButtonD3.addActionListener(listenerButtons);
+
+		addButtonD4.setActionCommand(Types.Actions.ADD_D4.name());
+		subButtonD4.setActionCommand(Types.Actions.SUB_D4.name());
+		addButtonD4.addActionListener(listenerButtons);
+		subButtonD4.addActionListener(listenerButtons);
+
+		enter.setActionCommand(Types.Actions.ENTER.name());
+		enter.addActionListener(listenerButtons);
+	}
+
+	public void displayErrorMessage(String message)
+	{
+		JOptionPane.showMessageDialog(frame, "Error: " + message, "Error", JOptionPane.ERROR_MESSAGE);
+	}
+
+	public void displayPassMessage(String message)
+	{
+		JOptionPane.showMessageDialog(frame, "Pass: " + message, "Pass", JOptionPane.INFORMATION_MESSAGE);
+	}
+
+	public static class CloseListener extends WindowAdapter
+	{
+		public void windowClosing(WindowEvent e)
+		{
+			e.getWindow().setVisible(false);
+			System.exit(0);
+		}
+	}
 }
+

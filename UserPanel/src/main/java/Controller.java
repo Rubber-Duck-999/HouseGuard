@@ -7,53 +7,79 @@ import java.util.logging.Logger;
 
 public class Controller implements ActionListener
 {
-  public Model _model;
-  public View _view;
-  //private Logger _log;
+	public Model _model;
+	public View _view;
+	private MonitorView _monitorView;
 
-  Controller(Model m, View v)//, Logger log)
-  {
-    //_log = log;
-    //_log.info("Controller()");
+	Controller(Model m, View v, MonitorView monitorView)
+	{
 
-    this._model = m;
-    this._view = v;
+		this._model = m;
+		this._view = v;
+		this._monitorView = monitorView;
+	}
 
-    this._view.addCheckListener(new CheckListener());
-  }
+	public void actionPerformed(java.awt.event.ActionEvent e)
+	{
+		if(Types.Actions.ENTER.name().equals(e.getActionCommand()))
+		{
+			int val = _model.checkPass();
+			if(val == Types.CORRECT)
+			{
+				_view.displayPassMessage("Pass");
+				this._monitorView.setMonitor();
+			}
+			else
+			{
+				_view.displayErrorMessage("Wrong Passcode");
+			}
+			_view.setDigits(_model.initModel(Types.RESET));
+		}
+		else if(Types.Actions.ADD_D1.name().equals(e.getActionCommand()))
+		{
+			_view.setDigit1(_model.incrementValue(Types.D1));
+		}
+		else if(Types.Actions.SUB_D1.name().equals(e.getActionCommand()))
+		{
+			_view.setDigit1(_model.decrementValue(Types.D1));
+		}
+		else if(Types.Actions.ADD_D2.name().equals(e.getActionCommand()))
+		{
+			_view.setDigit2(_model.incrementValue(Types.D2));
+		}
+		else if(Types.Actions.SUB_D2.name().equals(e.getActionCommand()))
+		{
+			_view.setDigit2(_model.decrementValue(Types.D2));
+		}
+		else if(Types.Actions.ADD_D3.name().equals(e.getActionCommand()))
+		{
+			_view.setDigit3(_model.incrementValue(Types.D3));
+		}
+		else if(Types.Actions.SUB_D3.name().equals(e.getActionCommand()))
+		{
+			_view.setDigit3(_model.decrementValue(Types.D3));
+		}
+		else if(Types.Actions.ADD_D4.name().equals(e.getActionCommand()))
+		{
+			_view.setDigit4(_model.incrementValue(Types.D4));
+		}
+		else if(Types.Actions.SUB_D4.name().equals(e.getActionCommand()))
+		{
+			_view.setDigit4(_model.decrementValue(Types.D4));
+		}
+		else if(Types.State.OFF.name().equals(e.getActionCommand()))
+		{
+			_monitorView.setMonitorState(_model.setModelStateOFF());
+		}
+		else if(Types.State.ON.name().equals(e.getActionCommand()))
+		{
+			_monitorView.setMonitorState(_model.setModelStateOn());
+		}
+	}
 
-  public void actionPerformed(java.awt.event.ActionEvent e)
-  {
-    //_log.info()
-    if(e.getActionCommand() == types.Actions.ADD.name())
-    {
-      _view.setNewValue(_model.incrementValue());
-    }
-    else if(e.getActionCommand() == types.Actions.MINUS.name())
-    {
-      _view.setNewValue(_model.decrementValue());
-    }
-  }
-
-  class CheckListener implements ActionListener
-  {
-    @Override
-    public void actionPerformed(ActionEvent e)
-    {
-      //_log.info("Controller: acting");
-      if(_model.createFile())
-      {
-        _view.setNewFrame(_model.createFile());
-      }
-      else
-      {
-        _view.displayErrorMessage(_model.getMessageReceived());
-      }
-    }
-  }
-
-  public void initmodel(int x)
-  {
-    _view.setNewValue(_model.setModelValue(x));
-  }
+	public void initmodel(int x, String state)
+	{
+		_view.setDigits(_model.initModel(x));
+		_monitorView.setMonitorState(state);
+	}
 }

@@ -21,9 +21,12 @@ public class mainClass
         int start_value = 10;
         myModel = new Model();
         myView = new View();
-        myController = new Controller(myModel, myView);
-        myController.initmodel(start_value);
+        
+        MonitorView monitorView = new MonitorView();
+        myController = new Controller(myModel, myView, monitorView);
+        myController.initmodel(start_value, Types.OFF);
         myView.addController(myController);
+        monitorView.addController(myController);
     }
 
     public static void main(String[] argv) throws Exception
@@ -51,7 +54,7 @@ public class mainClass
             if(!received.equals("PASS"))
             {
                 String pubRoutingKey = "event.UP";
-                myModel.setMessageReceived(received);
+                //myModel.setMessageReceived(received);
                 String pubMessage = "We have access denied at 14:00";
                 channel.basicPublish(EXCHANGE_NAME, pubRoutingKey, null, pubMessage.getBytes("UTF-8"));
             }
