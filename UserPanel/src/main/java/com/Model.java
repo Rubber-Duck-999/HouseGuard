@@ -26,12 +26,11 @@ public class Model
 
 	public int incrementValue(int digit)
 	{
-		++_digitArray[digit];
+		_digitArray[digit] = _digitArray[digit] + 1;
 		if(_digitArray[digit] >= MAXSIZE)
 		{
 			_digitArray[digit] = 0;
 		}
-		System.out.println(_digitArray[digit]);
 		return _digitArray[digit];
 	}
 
@@ -45,26 +44,14 @@ public class Model
 		return _digitArray[digit];
 	}
 
-	public int checkPass()
+	public Integer checkPass()
 	{
 		Integer digits = 0;
 		digits += _digitArray[0] * 1000;
 		digits += _digitArray[1] * 100;
 		digits += _digitArray[2] * 10;
 		digits += _digitArray[3];
-		if(_attempts == Types.MAX_ATTEMPTS)
-		{
-			return Types.ATTEMPTS_MAXED;
-		}
-		else if(!digits.equals(PASS))
-		{
-			return Types.INCORRECT;
-		}
-		else
-		{
-			_attempts = 0;
-			return Types.CORRECT;
-		}
+		return digits;
 	}
 	
 	public String setModelStateOn()

@@ -10,28 +10,37 @@ public class Controller implements ActionListener
 	public Model _model;
 	public View _view;
 	private MonitorView _monitorView;
+	private ConsumerTopic _consumer;
+	private RequestTable _pinTable;
 
-	Controller(Model m, View v, MonitorView monitorView)
+	Controller(Model m, View v, MonitorView monitorView, ConsumerTopic consumer)
 	{
-
 		this._model = m;
 		this._view = v;
 		this._monitorView = monitorView;
+		this._consumer = consumer;
+		_pinTable = new RequestTable();
 	}
 
 	public void actionPerformed(java.awt.event.ActionEvent e)
 	{
 		if(Types.Actions.ENTER.name().equals(e.getActionCommand()))
 		{
-			int val = _model.checkPass();
-			if(val == Types.CORRECT)
+			Integer val = _model.checkPass();
+			Integer key = _pinTable.addRecordReturn(val);
+			_consumer.AskForAccess(key, val);
+			if(!_consumer.getAccessStateSet())
 			{
-				_view.displayPassMessage("Pass");
-				this._monitorView.setMonitor();
-			}
-			else
-			{
-				_view.displayErrorMessage("Wrong Passcode");
+				_view.displayPassMessage("Loading...");
+				if(_consumer.getAccessState() && _pinTable.doesKeyExist(_consumer.getId()))
+				{
+					_view.displayPassMessage("Pass");
+					this._monitorView.setMonitor();
+				}
+				else
+				{
+					_view.displayErrorMessage("Wrong Passcode");
+				}
 			}
 			_view.setDigits(_model.initModel(Types.RESET));
 		}

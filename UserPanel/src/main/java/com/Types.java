@@ -22,9 +22,9 @@ public interface Types
   }
   
   final int D1 = 0;
-  final int D2 = 0;
-  final int D3 = 0;
-  final int D4 = 0;
+  final int D2 = 1;
+  final int D3 = 2;
+  final int D4 = 3;
   
   final int RESET = 0;
   final String OFF = "OFF";
@@ -35,4 +35,9 @@ public interface Types
   final int INCORRECT = 1;
   final int CORRECT = 2;
   final int TIMEOUT = 3;
+  
+  final String REQUEST_ACCESS_TOPIC = "request.access";
+  
+  final String PUB_EVENT_TOPIC = "Event.UP";
+  final String COMPONENT_NAME = "UP";
 }

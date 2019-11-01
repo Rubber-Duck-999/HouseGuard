@@ -32,17 +32,17 @@ public class MonitorView
     frame = new JFrame("Simple MVC");
     buttonPanel = new JPanel();
     fieldPanel = new JPanel();
-    
+
     monitorState = new JLabel("", SwingConstants.CENTER);
 
     ONButton = new JButton("ON");
     OFFButton = new JButton("OFF");
-    
+
     buttonPanel.add(ONButton);
     buttonPanel.add(OFFButton);
 
     buttonPanel.setLayout(new GridLayout(2,4));
-    
+
     setButtonFont();
     setLabelFont();
 
@@ -56,13 +56,13 @@ public class MonitorView
   public void setMonitor()
   {
 	frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-	frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-	frame.setUndecorated(true);
-	frame.setSize(640,480);
-	frame.pack();
+	//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+	//frame.setUndecorated(true);
+	//frame.setSize(640,480);
+	//frame.pack();
 	frame.setVisible(true);
   }
-  
+
   private void setLabelFont()
   {
       buttonFont = new Font("Calibri", Font.BOLD, 128);
@@ -77,10 +77,10 @@ public class MonitorView
       OFFButton.setFont(buttonFont);
       OFFButton.setForeground(Color.GREEN);
   }
-  
+
   public void setNewFrame(boolean visible)
   {
-	  
+
   }
 
   public < E > void setMonitorState(E v)
