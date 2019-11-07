@@ -9,7 +9,7 @@ public class RequestTable
 	private static Map<Integer,Integer> table;
 	private Integer key;
 	
-	RequestTable()
+	public RequestTable()
 	{
 		table = new HashMap<Integer, Integer>();
 		key = 1;
@@ -17,17 +17,31 @@ public class RequestTable
 	
 	public void addRecord(Integer pin)
 	{
-		table.put(key, pin); 
-		key++;
-		System.out.println("Placing key: " + (key -1) + ", " + pin);
+		if(pin < Types.MAXPIN && pin > -1)
+		{
+			table.put(key, pin); 
+			key++;
+			System.out.println("Placing key: " + (key -1) + ", " + pin);
+		}
+		else
+		{
+			throw new ArithmeticException("Not a number");
+		}
 	}
 	
-	public Integer addRecordReturn(Integer pin)
+	public Integer addRecordNextKeyReturn(Integer pin)
 	{
-		table.put(key, pin); 
-		key++;
-		System.out.println("Placing key: " + (key -1) + ", " + pin);
-		return (key - 1);
+		if(pin < Types.MAXPIN && pin > -1)
+		{
+			table.put(key, pin); 
+			key++;
+			System.out.println("Placing key: " + (key -1) + ", " + pin);
+			return (key - 1);
+		}
+		else
+		{
+			throw new ArithmeticException("Not a number");
+		}
 	}
 	
 	public boolean doesKeyExist(Integer keyValue)
@@ -60,15 +74,15 @@ public class RequestTable
 		boolean isValuePresent = false; 
 
 		// Iterate over the HashMap 
-		while (iterator.hasNext()) 
+		while (iterator.hasNext() && !isValuePresent) 
 		{
 			// Get the entry at this iteration 
 			Map.Entry<Integer, Integer> entry = iterator.next(); 
 
 			// Check if this key is the required key 
-			if (value == entry.getValue()) 
+			if (value.equals(entry.getValue()))
 			{ 
-				isValuePresent = true; 
+				isValuePresent = true;
 			}	 
 		}
 		return isValuePresent; 
@@ -87,7 +101,7 @@ public class RequestTable
 			// Get the entry at this iteration 
 			Map.Entry<Integer, Integer> entry = iterator.next(); 
 			// Check if this key is the required key 
-			if (value == entry.getValue()) 
+			if (value.equals(entry.getValue()))
 			{ 
 				isValuePresent = true; 
 				key = entry.getKey();

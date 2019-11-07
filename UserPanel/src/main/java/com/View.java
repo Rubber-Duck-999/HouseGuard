@@ -29,7 +29,7 @@ public class View
 	private JButton enter;
 	private Font buttonFont;
 
-	View()
+	public View()
 	{
 		frame = new JFrame("Simple MVC");
 		buttonPanel = new JPanel();
@@ -81,9 +81,9 @@ public class View
 		GraphicsDevice device = frame.getGraphicsConfiguration().getDevice();
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		//frame.setUndecorated(true);
-		//frame.setSize(1280,980);
+		frame.setSize(1280,980);
 		//frame.pack();
 		frame.setVisible(true);
 		device.setFullScreenWindow(frame);

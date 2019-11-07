@@ -1,6 +1,8 @@
 package com;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeoutException;
 
 import com.google.gson.Gson;
@@ -37,7 +39,7 @@ class ConsumerTopic
     	accessStateSet = false;
     }
 
-    public void AskForAccess(Integer key, Integer val)
+    public void askForAccess(Integer key, Integer val)
     {
         String routingKey = Types.REQUEST_ACCESS_TOPIC;
         gson = new Gson();
@@ -45,6 +47,7 @@ class ConsumerTopic
         req.setId(key);
         req.setPin(val);
         String json = gson.toJson(req);
+        System.out.println("Message is : " + json);
         try 
         {
 			channel.basicPublish(EXCHANGE_NAME, routingKey, null, json.getBytes());
@@ -56,21 +59,16 @@ class ConsumerTopic
 		}
     }
     
-    private void AccessReponse(String delivery, String routingKey)
+    private void accessResponse(String delivery, String routingKey)
     {
-        //System.out.println(" [x] Received '" + routingKey + "':'" + delivery + "'");
+    	System.out.println(delivery);
         accessStateSet = true; 
 		AccessResponse data = gson.fromJson(delivery, AccessResponse.class);
         receivedId = data.getId();        		
-        if(!data.getResult().equals("PASS"))
+        if(!data.getResult().equals(Types.PASS))
         {
         	accessAllowed = false;
-            Event user_event = new Event();
-            user_event.setComponent(Types.COMPONENT_NAME);
-            user_event.setError("We have access denied");
-            user_event.setTime("12:00:00");
-            user_event.setSeverity(2);
-            String pubMessage = gson.toJson(user_event);
+            String pubMessage = createEventUpMessage();
             try 
             {
 				channel.basicPublish(EXCHANGE_NAME, Types.PUB_EVENT_TOPIC, null, pubMessage.getBytes());
@@ -80,25 +78,38 @@ class ConsumerTopic
 				e.printStackTrace();
 			}
         }
-        else if(data.getResult().equals("PASS"))
+        else if(data.getResult().equals(Types.PASS))
         {
         	accessAllowed = true;
         }
     }
     
-    public void ConsumeRequired()
+    private String createEventUpMessage() 
+    {
+        Event user_event = new Event();
+        user_event.setComponent(Types.COMPONENT_NAME);
+        user_event.setError(Types.RequestFailure);
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");  
+        Date date = new Date();
+        user_event.setTime(formatter.format(date));
+        user_event.setSeverity(Types.ACCESS_NOT_RECEIVED);
+        String pubMessage = gson.toJson(user_event);		
+		return pubMessage;
+	}
+
+	public void consumeRequired()
     {
         try 
         {
         	Gson gson = new Gson();
 			subscribeQueueName = channel.queueDeclare().getQueue();
-	        channel.queueBind(subscribeQueueName, EXCHANGE_NAME, "access.response");
+	        channel.queueBind(subscribeQueueName, EXCHANGE_NAME, Types.ACCESS_RESPONSE);
 	        System.out.println(" [*] Waiting for access.response. To exit press CTRL+C");
 	        DeliverCallback deliverCallback = (consumerTag, delivery) -> {
 	        	System.out.println("Message received");
 	        	String received = new String(delivery.getBody());
 	        	String key = delivery.getEnvelope().getRoutingKey();
-	        	this.AccessReponse(received, key);
+	        	this.accessResponse(received, key);
 	        };
 	        channel.basicConsume(subscribeQueueName, true, deliverCallback, consumerTag -> { });
 		} 

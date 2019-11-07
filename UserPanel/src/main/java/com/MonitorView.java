@@ -21,87 +21,87 @@ import java.util.logging.Logger;
 
 public class MonitorView
 {
-  private JFrame frame;
-  private JPanel buttonPanel, fieldPanel;
-  private JLabel monitorState;
-  private JButton ONButton, OFFButton;
-  private Font buttonFont;
+	private JFrame frame;
+	private JPanel buttonPanel, fieldPanel;
+	private JLabel monitorState;
+	private JButton ONButton, OFFButton;
+	private Font buttonFont;
 
-  MonitorView()
-  {
-    frame = new JFrame("Simple MVC");
-    buttonPanel = new JPanel();
-    fieldPanel = new JPanel();
+	public MonitorView()
+	{
+		frame = new JFrame("Simple MVC");
+		buttonPanel = new JPanel();
+		fieldPanel = new JPanel();
 
-    monitorState = new JLabel("", SwingConstants.CENTER);
+		monitorState = new JLabel("", SwingConstants.CENTER);
 
-    ONButton = new JButton("ON");
-    OFFButton = new JButton("OFF");
+		ONButton = new JButton("ON");
+		OFFButton = new JButton("OFF");
 
-    buttonPanel.add(ONButton);
-    buttonPanel.add(OFFButton);
+		buttonPanel.add(ONButton);
+		buttonPanel.add(OFFButton);
 
-    buttonPanel.setLayout(new GridLayout(2,4));
+		buttonPanel.setLayout(new GridLayout(2,4));
 
-    setButtonFont();
-    setLabelFont();
+		setButtonFont();
+		setLabelFont();
 
-    fieldPanel.setLayout(new GridLayout(1,2));
-    fieldPanel.add(monitorState);
+		fieldPanel.setLayout(new GridLayout(1,2));
+		fieldPanel.add(monitorState);
 
-    frame.add(fieldPanel, BorderLayout.NORTH);
-    frame.add(buttonPanel, BorderLayout.CENTER);
-  }
+		frame.add(fieldPanel, BorderLayout.NORTH);
+		frame.add(buttonPanel, BorderLayout.CENTER);
+	}
 
-  public void setMonitor()
-  {
-	frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-	//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-	//frame.setUndecorated(true);
-	//frame.setSize(640,480);
-	//frame.pack();
-	frame.setVisible(true);
-  }
+	public void setMonitor()
+	{
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		//frame.setUndecorated(true);
+		frame.setSize(640,480);
+		//frame.pack();
+		frame.setVisible(true);
+	}
 
-  private void setLabelFont()
-  {
-      buttonFont = new Font("Calibri", Font.BOLD, 128);
-      monitorState.setFont(buttonFont);
-  }
+	private void setLabelFont()
+	{
+		buttonFont = new Font("Calibri", Font.BOLD, 128);
+		monitorState.setFont(buttonFont);
+	}
 
-  private void setButtonFont()
-  {
-      buttonFont = new Font("Calibri", Font.BOLD, 40);
-      ONButton.setFont(buttonFont);
-      ONButton.setForeground(Color.GREEN);
-      OFFButton.setFont(buttonFont);
-      OFFButton.setForeground(Color.GREEN);
-  }
+	private void setButtonFont()
+	{
+		buttonFont = new Font("Calibri", Font.BOLD, 40);
+		ONButton.setFont(buttonFont);
+		ONButton.setForeground(Color.GREEN);
+		OFFButton.setFont(buttonFont);
+		OFFButton.setForeground(Color.GREEN);
+	}
 
-  public void setNewFrame(boolean visible)
-  {
+	public void close()
+	{
+		frame.dispose();
+	}
 
-  }
+	public < E > void setMonitorState(E v)
+	{
+		monitorState.setText("" + v);
+	}
 
-  public < E > void setMonitorState(E v)
-  {
-    monitorState.setText("" + v);
-  }
+	public void addController(ActionListener listenerButtons)
+	{
+		ONButton.setActionCommand(Types.State.ON.name());
+		OFFButton.setActionCommand(Types.State.OFF.name());
+		ONButton.addActionListener(listenerButtons);
+		OFFButton.addActionListener(listenerButtons);
+	}
 
-  public void addController(ActionListener listenerButtons)
-  {
-    ONButton.setActionCommand(Types.State.ON.name());
-    OFFButton.setActionCommand(Types.State.OFF.name());
-    ONButton.addActionListener(listenerButtons);
-    OFFButton.addActionListener(listenerButtons);
-  }
-
-  public static class CloseListener extends WindowAdapter
-  {
-    public void windowClosing(WindowEvent e)
-    {
-      e.getWindow().setVisible(false);
-      System.exit(0);
-    }
-  }
+	public static class CloseListener extends WindowAdapter
+	{
+		public void windowClosing(WindowEvent e)
+		{
+			e.getWindow().setVisible(false);
+			System.exit(0);
+		}
+	}
 }

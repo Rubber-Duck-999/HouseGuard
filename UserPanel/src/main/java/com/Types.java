@@ -38,6 +38,12 @@ public interface Types
   
   final String REQUEST_ACCESS_TOPIC = "request.access";
   
-  final String PUB_EVENT_TOPIC = "Event.UP";
+  final String PUB_EVENT_TOPIC = "event.UP";
   final String COMPONENT_NAME = "UP";
+  final Integer ACCESS_NOT_RECEIVED = 4;
+  final Object PASS = "PASS";
+  final String RequestFailure = "We have access failured";
+  final String ACCESS_RESPONSE = "access.response";
+  final Integer MAXPIN = 9999;
+  
 }

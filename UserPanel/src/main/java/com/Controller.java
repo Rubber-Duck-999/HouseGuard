@@ -13,36 +13,46 @@ public class Controller implements ActionListener
 	private ConsumerTopic _consumer;
 	private RequestTable _pinTable;
 
-	Controller(Model m, View v, MonitorView monitorView, ConsumerTopic consumer)
+	public Controller(Model m, View v, MonitorView monitorView, ConsumerTopic consumer, RequestTable requestTable)
 	{
 		this._model = m;
 		this._view = v;
 		this._monitorView = monitorView;
 		this._consumer = consumer;
-		_pinTable = new RequestTable();
+		_pinTable = requestTable;
+	}
+	
+	public void enterCommand()
+	{
+		Integer val = _model.checkPass();
+		Integer key = _pinTable.addRecordNextKeyReturn(val);
+		_consumer.askForAccess(key, val);
+	}
+	
+	public void checkAccess()
+	{
+		if(!_consumer.getAccessStateSet())
+		{
+			_view.displayPassMessage("Loading...");
+			if(_consumer.getAccessState() && _pinTable.doesKeyExist(_consumer.getId()))
+			{
+				_view.displayPassMessage("Pass");
+				this._monitorView.setMonitor();
+			}
+			else
+			{
+				_view.displayErrorMessage("Wrong Passcode");
+			}
+		}
 	}
 
 	public void actionPerformed(java.awt.event.ActionEvent e)
 	{
 		if(Types.Actions.ENTER.name().equals(e.getActionCommand()))
 		{
-			Integer val = _model.checkPass();
-			Integer key = _pinTable.addRecordReturn(val);
-			_consumer.AskForAccess(key, val);
-			if(!_consumer.getAccessStateSet())
-			{
-				_view.displayPassMessage("Loading...");
-				if(_consumer.getAccessState() && _pinTable.doesKeyExist(_consumer.getId()))
-				{
-					_view.displayPassMessage("Pass");
-					this._monitorView.setMonitor();
-				}
-				else
-				{
-					_view.displayErrorMessage("Wrong Passcode");
-				}
-			}
-			_view.setDigits(_model.initModel(Types.RESET));
+			this.enterCommand();
+			this.checkAccess();
+			_view.setDigits(_model.initModel(Types.RESET));	
 		}
 		else if(Types.Actions.ADD_D1.name().equals(e.getActionCommand()))
 		{
@@ -79,10 +89,12 @@ public class Controller implements ActionListener
 		else if(Types.State.OFF.name().equals(e.getActionCommand()))
 		{
 			_monitorView.setMonitorState(_model.setModelStateOFF());
+			_monitorView.close();
 		}
 		else if(Types.State.ON.name().equals(e.getActionCommand()))
 		{
 			_monitorView.setMonitorState(_model.setModelStateOn());
+			_monitorView.close();
 		}
 	}
 

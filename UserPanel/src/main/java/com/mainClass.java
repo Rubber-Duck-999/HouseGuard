@@ -17,11 +17,11 @@ public class mainClass
 
         MonitorView monitorView = new MonitorView();
         cons = new ConsumerTopic();
-        myController = new Controller(myModel, myView, monitorView, cons);
+        myController = new Controller(myModel, myView, monitorView, cons, new RequestTable());
         myController.initmodel(start_value, Types.OFF);
         myView.addController(myController);
         monitorView.addController(myController);
-        cons.ConsumeRequired();
+        cons.consumeRequired();
     }
 
     public static void main(String[] argv) throws Exception

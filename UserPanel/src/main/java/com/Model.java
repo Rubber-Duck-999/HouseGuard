@@ -6,13 +6,14 @@ public class Model
 	private int MAXSIZE = 10;
 	private int MINSIZE = 0;
 	private int[] _digitArray;
-	private final Integer PASS = 9000;
-	private Integer _attempts;
 	
 	public Model()
 	{
-		_attempts = 0;
 		_digitArray = new int[4];
+		for(int i = 0; i < 4; i++)
+		{
+			_digitArray[i] = 0;
+		}
 	}
 	
 	public int initModel(int x)
