@@ -21,7 +21,7 @@ public class RequestTable
 		{
 			table.put(key, pin); 
 			key++;
-			System.out.println("Placing key: " + (key -1) + ", " + pin);
+			//System.out.println("Placing key: " + (key -1) + ", " + pin);
 		}
 		else
 		{
@@ -35,7 +35,7 @@ public class RequestTable
 		{
 			table.put(key, pin); 
 			key++;
-			System.out.println("Placing key: " + (key -1) + ", " + pin);
+			//System.out.println("Placing key: " + (key -1) + ", " + pin);
 			return (key - 1);
 		}
 		else

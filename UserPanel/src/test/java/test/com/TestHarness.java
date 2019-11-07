@@ -55,8 +55,8 @@ public class TestHarness
 	{
 		RequestTable table = new RequestTable();
 		Integer pin = 1111;
-		table.addRecordNextKeyReturn(pin);
-		table.addRecordNextKeyReturn(pin);
+		table.addRecord(pin);
+		table.addRecord(pin);
 		Integer key = table.addRecordNextKeyReturn(pin);
 		Integer expected = 3;
 		assertEquals(key, expected);

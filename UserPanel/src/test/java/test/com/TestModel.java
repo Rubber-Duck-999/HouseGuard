@@ -85,6 +85,18 @@ public class TestModel
 		assertNotEquals(actual, expected);		
 	}
 	
-	
+	@Test
+	public void testDigitOutOfRange()
+	{
+		Model myModel = new Model();
+		Integer testBeforePasscode = 9;
+		@SuppressWarnings("unused")
+		Integer unneeded = myModel.initModel(testBeforePasscode);
+		@SuppressWarnings("unused")
+		Integer testPasscode = myModel.checkPass();
+		Integer actual = myModel.incrementValue(3);
+		Integer expected = 6;
+		assertNotEquals(actual, expected);			
+	}
 
 }
