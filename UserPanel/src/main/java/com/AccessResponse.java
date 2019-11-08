@@ -6,16 +6,20 @@ public class AccessResponse
 {
 	private Integer id;
 	private String result;
-	public Integer getId() {
+	public Integer getId() 
+	{
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Integer id) 
+	{
 		this.id = id;
 	}
-	public String getResult() {
+	public String getResult() 
+	{
 		return result;
 	}
-	public void setResult(String result) {
+	public void setResult(String result) 
+	{
 		this.result = result;
 	}
 

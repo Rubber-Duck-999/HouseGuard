@@ -29,6 +29,8 @@ queue_name = result.method.queue
 channel.queue_bind(exchange='topics', queue=queue_name, routing_key=key)
 channel.queue_bind(exchange='topics', queue=queue_name, routing_key=key_event)
 print("Waiting for request from UP")
+while True:
+    channel.basic_publish(exchange='topics', routing_key=key_publish, body="{ 'id': 1, 'result': 'FAIL' }")
 #
 
 def callback(ch, method, properties, body):
@@ -36,29 +38,29 @@ def callback(ch, method, properties, body):
     if method.routing_key == "key_event":
         print("Event Up receieved : " + str)
         my_json = body.decode('utf8').replace("'", '"')
-        print(my_json)
-        print('- ' * 20)
+        #print(my_json)
+        #print('- ' * 20)
         data = json.loads(my_json)
-        print(data)
-        print(data["component"])
+        #print(data)
+        #print(data["component"])
     else:
         print("UP sent us a request, we received = " + body.decode())
         my_json = body.decode('utf8').replace("'", '"')
-        print(my_json)
-        print('- ' * 20)
+        #print(my_json)
+        #print('- ' * 20)
         # Load the JSON to a Python list & dump it back out as formatted JSON
         data = json.loads(my_json)
-        print(data)
-        print(data["id"])
-        print(data["pin"])
+        #print(data)
+        #print(data["id"])
+        #print(data["pin"])
         pin_correct = 1234
         if data["pin"] == pin_correct:
             time.sleep(1)
-            channel.queue_bind(exchange='topics', queue=queue_name, routing_key=key_publish)
+            #channel.queue_bind(exchange='topics', queue=queue_name, routing_key=key_publish)
             channel.basic_publish(exchange='topics', routing_key=key_publish, body="{ 'id': 1, 'result': 'PASS' }")
         else:
             time.sleep(1)
-            channel.queue_bind(exchange='topics', queue=queue_name, routing_key=key_publish)
+            #channel.queue_bind(exchange='topics', queue=queue_name, routing_key=key_publish)
             channel.basic_publish(exchange='topics', routing_key=key_publish, body="{ 'id': 1, 'result': 'FAIL' }")
         #sys.exit(0)
 

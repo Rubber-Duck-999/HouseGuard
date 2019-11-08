@@ -12,7 +12,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
 
 
-class ConsumerTopic
+public class ConsumerTopic
 {
     private static final String EXCHANGE_NAME = "topics";
     private static ConnectionFactory factory;
@@ -120,7 +120,7 @@ class ConsumerTopic
     }
     
     
-    ConsumerTopic()
+    public ConsumerTopic()
     {
     	receivedId = 0;
     	accessAllowed = false;

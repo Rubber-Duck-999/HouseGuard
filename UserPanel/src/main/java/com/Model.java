@@ -38,7 +38,7 @@ public class Model
 	public int decrementValue(int digit)
 	{
 	    --_digitArray[digit];
-		if(_digitArray[digit] <= MINSIZE)
+		if(_digitArray[digit] < MINSIZE)
 		{
 			_digitArray[digit] = (MAXSIZE - 1);
 		}

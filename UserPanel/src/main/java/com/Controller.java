@@ -48,50 +48,56 @@ public class Controller implements ActionListener
 
 	public void actionPerformed(java.awt.event.ActionEvent e)
 	{
-		if(Types.Actions.ENTER.name().equals(e.getActionCommand()))
+		String input = e.getActionCommand();
+		checkAction(input);
+	}
+
+	public void checkAction(String input) 
+	{
+		if(Types.Actions.ENTER.name().equals(input))
 		{
 			this.enterCommand();
 			this.checkAccess();
 			_view.setDigits(_model.initModel(Types.RESET));	
 		}
-		else if(Types.Actions.ADD_D1.name().equals(e.getActionCommand()))
+		else if(Types.Actions.ADD_D1.name().equals(input))
 		{
 			_view.setDigit1(_model.incrementValue(Types.D1));
 		}
-		else if(Types.Actions.SUB_D1.name().equals(e.getActionCommand()))
+		else if(Types.Actions.SUB_D1.name().equals(input))
 		{
 			_view.setDigit1(_model.decrementValue(Types.D1));
 		}
-		else if(Types.Actions.ADD_D2.name().equals(e.getActionCommand()))
+		else if(Types.Actions.ADD_D2.name().equals(input))
 		{
 			_view.setDigit2(_model.incrementValue(Types.D2));
 		}
-		else if(Types.Actions.SUB_D2.name().equals(e.getActionCommand()))
+		else if(Types.Actions.SUB_D2.name().equals(input))
 		{
 			_view.setDigit2(_model.decrementValue(Types.D2));
 		}
-		else if(Types.Actions.ADD_D3.name().equals(e.getActionCommand()))
+		else if(Types.Actions.ADD_D3.name().equals(input))
 		{
 			_view.setDigit3(_model.incrementValue(Types.D3));
 		}
-		else if(Types.Actions.SUB_D3.name().equals(e.getActionCommand()))
+		else if(Types.Actions.SUB_D3.name().equals(input))
 		{
 			_view.setDigit3(_model.decrementValue(Types.D3));
 		}
-		else if(Types.Actions.ADD_D4.name().equals(e.getActionCommand()))
+		else if(Types.Actions.ADD_D4.name().equals(input))
 		{
 			_view.setDigit4(_model.incrementValue(Types.D4));
 		}
-		else if(Types.Actions.SUB_D4.name().equals(e.getActionCommand()))
+		else if(Types.Actions.SUB_D4.name().equals(input))
 		{
 			_view.setDigit4(_model.decrementValue(Types.D4));
 		}
-		else if(Types.State.OFF.name().equals(e.getActionCommand()))
+		else if(Types.State.OFF.name().equals(input))
 		{
 			_monitorView.setMonitorState(_model.setModelStateOFF());
 			_monitorView.close();
 		}
-		else if(Types.State.ON.name().equals(e.getActionCommand()))
+		else if(Types.State.ON.name().equals(input))
 		{
 			_monitorView.setMonitorState(_model.setModelStateOn());
 			_monitorView.close();
