@@ -95,13 +95,20 @@ public class Controller implements ActionListener
 		else if(Types.State.OFF.name().equals(input))
 		{
 			_monitorView.setMonitorState(_model.setModelStateOFF());
+			this.sendMonitorUpdate(false);
 			_monitorView.close();
 		}
 		else if(Types.State.ON.name().equals(input))
 		{
 			_monitorView.setMonitorState(_model.setModelStateOn());
+			this.sendMonitorUpdate(true);
 			_monitorView.close();
 		}
+	}
+	
+	public void sendMonitorUpdate(boolean state)
+	{
+		_consumer.sendMonitorState(state);
 	}
 
 	public void initmodel(int x, String state)

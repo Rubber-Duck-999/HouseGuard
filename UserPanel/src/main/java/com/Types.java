@@ -37,6 +37,7 @@ public interface Types
   final int TIMEOUT = 3;
   
   final String REQUEST_ACCESS_TOPIC = "request.access";
+  final String MONITOR_STATE_TOPIC = "monitor.state";
   
   final String PUB_EVENT_TOPIC = "event.UP";
   final String COMPONENT_NAME = "UP";
