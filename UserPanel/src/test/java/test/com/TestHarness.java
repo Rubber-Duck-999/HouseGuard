@@ -3,7 +3,7 @@ package test.com;
 import static org.junit.Assert.*;
 
 import java.awt.event.ActionEvent;
-
+import com.house_guard.Common.*;
 import org.junit.Test;
 
 import com.*;

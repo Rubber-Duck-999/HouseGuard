@@ -2,7 +2,7 @@ package com;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+import com.house_guard.Common.*;
 import java.util.logging.Logger;
 
 public class Controller implements ActionListener

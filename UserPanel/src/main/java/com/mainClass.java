@@ -1,6 +1,7 @@
 package com;
 
 import java.util.logging.Logger;
+import com.house_guard.Common.*;
 
 public class mainClass
 {

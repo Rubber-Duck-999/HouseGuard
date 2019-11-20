@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeoutException;
+import com.house_guard.Common.*;
+
 
 import com.google.gson.Gson;
 import com.rabbitmq.client.Channel;
@@ -105,7 +107,7 @@ public class ConsumerTopic
     
     private String createEventUpMessage() 
     {
-        Event user_event = new Event();
+        EventTopic user_event = new EventTopic();
         user_event.setComponent(Types.COMPONENT_NAME);
         user_event.setError(Types.RequestFailure);
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");  

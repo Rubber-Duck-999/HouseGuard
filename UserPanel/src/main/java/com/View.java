@@ -1,6 +1,7 @@
 package com;
 
 import java.awt.BorderLayout;
+import com.house_guard.Common.*;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GraphicsDevice;

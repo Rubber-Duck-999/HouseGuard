@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import com.*;
+import com.house_guard.Common.EventTopic;
 
 public class TestJsonTypes 
 {
@@ -30,7 +31,7 @@ public class TestJsonTypes
 	@Test
 	public void testGetErrorChecks() 
 	{
-		Event up = new Event();
+		EventTopic up = new EventTopic();
 		String component = "FAIL";
 		up.setComponent(component);
 		assertEquals(component, up.getComponent());

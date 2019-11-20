@@ -1,5 +1,7 @@
 package com;
 
+import com.house_guard.Common.*;
+
 public class Model
 {
 	private final int MAX = 4;
