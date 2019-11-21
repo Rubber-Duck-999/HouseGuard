@@ -1,28 +1,32 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.user_panel</groupId>
-  <artifactId>UserPanel</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
-  <name>User Panel</name>
-
+  <parent>
+      <groupId>com.house_guard</groupId>
+      <artifactId>project</artifactId>
+      <version>0.0.1</version>
+  </parent>
+  <artifactId>DatabaseManager</artifactId>
+  <version>0.0.1</version>
+  <packaging>jar</packaging>
+  
   <dependencies>
   	<dependency>
   		<groupId>junit</groupId>
   		<artifactId>junit</artifactId>
   		<version>4.13-rc-1</version>
 	</dependency>
-  
+	
     <dependency>
         <groupId>com.rabbitmq</groupId>
         <artifactId>amqp-client</artifactId>
         <version>5.7.3</version>
     </dependency>
-      
+    
     <dependency>
         <groupId>com.house_guard</groupId>
         <artifactId>Common</artifactId>
         <version>0.0.1</version>
-    </dependency>      
+    </dependency>
       
     <dependency>
         <groupId>commons-io</groupId>
