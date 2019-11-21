@@ -15,7 +15,7 @@ steps:
 
 - task: Maven@3
   inputs:
-    mavenPomFile: 'Common/Common/pom.xml'
+    mavenPomFile: 'ParentComponent/pom.xml'
     mavenOptions: '-Xmx3072m'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
@@ -23,19 +23,3 @@ steps:
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
     goals: 'install'
-
-- task: PublishPipelineArtifact@1
-  inputs:
-    path: $(System.DefaultWorkingDirectory)/Common/Common/target
-    artifact: Common
-
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'UserPanel/pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: 'TEST-UP.xml'
-    goals: 'package'
