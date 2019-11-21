@@ -1,3 +1,6 @@
+[![Build Status](https://dev.azure.com/simoncrowther95/simoncrowther95/_apis/build/status/Rubber-Duck-999.HouseGuard?branchName=master)](https://dev.azure.com/simoncrowther95/simoncrowther95/_build/latest?definitionId=6&branchName=master)
+
+
 HouseGuard
 
 A project based on standalone on user controlled security system that can manage multi sensor inputs and handle external communication. Complete with its own network security and message broker design. 
