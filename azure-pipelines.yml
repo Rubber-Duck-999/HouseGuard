@@ -24,6 +24,11 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     goals: 'install'
 
+- task: PublishPipelineArtifact@1
+  inputs:
+    path: $(System.DefaultWorkingDirectory)/Common/Common/target
+    artifact: Common
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'UserPanel/pom.xml'
