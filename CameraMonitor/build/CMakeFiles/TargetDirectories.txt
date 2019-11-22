@@ -1,0 +1,3 @@
+/home/ubuntu/environment/HouseGuard/CameraMonitor/build/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/environment/HouseGuard/CameraMonitor/build/CMakeFiles/exeCameraMonitor.dir
+/home/ubuntu/environment/HouseGuard/CameraMonitor/build/CMakeFiles/edit_cache.dir

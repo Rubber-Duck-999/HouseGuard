@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../boost/boostlogging.h
+boost/log/trivial.hpp
+-
+boost/log/sources/global_logger_storage.hpp
+-
+
+/home/ubuntu/environment/HouseGuard/CameraMonitor/src/test.cpp
+iostream
+-
+boostlogging.h
+/home/ubuntu/environment/HouseGuard/CameraMonitor/src/boostlogging.h
+
