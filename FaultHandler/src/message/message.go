@@ -1,11 +1,11 @@
 package message
 
 import (
+	"fmt"
+	"github.com/scorredoira/email"
 	"log"
 	"net/mail"
 	"net/smtp"
-	"email"
-	"fmt"
 )
 
 func Email() {
