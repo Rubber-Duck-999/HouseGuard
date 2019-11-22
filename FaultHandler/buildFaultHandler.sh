@@ -14,7 +14,6 @@ else
     export GOPATH=$BWD/FaultHandler
     go get -v github.com/streadway/amqp
     go get -v github.com/scorredoira/email
-    go build src/Pub/main.go
     export GOBIN=$GOPATH/bin
     go install src/Pub/main.go
     exit 0
