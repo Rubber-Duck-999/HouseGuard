@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/exeCameraMonitor.dir/src/test.cpp.o  -o exeCameraMonitor 

@@ -1,3 +1,4 @@
 /FaultHandler/src/github.com/*
 /FaultHandler/bin/
 /FaultHandler/pkg/
+/CameraMonitor/build/
