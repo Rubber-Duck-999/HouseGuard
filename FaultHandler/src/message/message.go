@@ -2,13 +2,18 @@ package message
 
 import (
 	"fmt"
-	"github.com/scorredoira/email"
 	"log"
+
+	"github.com/scorredoira/email"
 	"net/mail"
 	"net/smtp"
 )
 
-func Email() {
+func SendSMS(issue string) {
+	log.Debug("Sending important SMS")
+}
+
+func SendEmail(issue string) {
 	// compose the message
 	m := email.NewMessage("Subject", "this is the body")
 	m.From = mail.Address{Name: "From", Address: "email"}

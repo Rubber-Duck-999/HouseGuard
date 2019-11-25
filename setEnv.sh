@@ -1,3 +1,4 @@
 #!/bin/sh
 
-export BWD="$PWD"
+export BWD=$PWD
+echo $BWD

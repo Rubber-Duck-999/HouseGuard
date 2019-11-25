@@ -16,7 +16,8 @@
   },
   "failure": {
     "time":"14:56:00",
-    "type": "Camera"
+    "type": "Camera",
+    "severity": 1
   },
   "request.image": {
     "request_id": 100,
@@ -38,9 +39,7 @@
   "request.power": {
     "power":"shutdown",
     "severity":5,
-    "components": [
-      "EVM", "DBM"
-    ],
+    "component": "DBM"
   },
   "request.access": {
     "id": 101,
@@ -66,9 +65,5 @@
   "power.notice": {
     "component": "EVM",
     "restart": false
-  },
-  "failure.component": {
-    "component": "CM",
-    "severity": 1
   }
 }
