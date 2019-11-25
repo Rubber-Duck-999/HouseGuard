@@ -40,8 +40,7 @@ func CheckState(ch amqp.Channel) {
 				PublishRequestPower(&ch, power)
 				SubscribedMessagesMap[message_id].valid = false
 			default:
-				log.Debug("What?")
-
+				log.Debug("What?"
 			}
 		}
 	}
