@@ -1,0 +1,1 @@
+{"rustc":18016395016886003921,"features":"[\"amq-protocol-tcp\", \"native-tls\"]","target":10429514197457385088,"profile":9935990280773120926,"path":7308734940223946766,"deps":[[6498098872207390566,"amq_protocol_codegen",false,6233795889094661734]],"local":[{"Precalculated":"3.1.0"}],"rustflags":[],"metadata":3322997691016059645}
