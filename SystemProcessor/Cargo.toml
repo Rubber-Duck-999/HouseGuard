@@ -1,9 +1,12 @@
 [package]
-name = "SystemProcessor"
+name = "exeSystemProcessor"
 version = "0.1.0"
-authors = ["simon <simon.crowther95@hotmail.co.uk>"]
+authors = ["simon"]
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+psutil = { git = "https://github.com/borntyping/rust-psutil" }
+amqp = "*"
+clap = "*"
