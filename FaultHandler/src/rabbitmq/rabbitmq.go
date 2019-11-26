@@ -16,22 +16,28 @@ func failOnError(err error, msg string) {
 	}
 }
 
-func Messages(routing_key string, value string) {
+func getTime() string {
+	t := time.Now()
+	log.Trace(t.Format(TIMEFORMAT))
+	return t.Format(TIMEFORMAT)
+}
+
+var ch amqp.Channel
+
+func messages(routing_key string, value string) {
 	if SubscribedMessagesMap == nil {
 		SubscribedMessagesMap = make(map[uint32]*MapMessage)
-		Messages(routing_key, value)
+		messages(routing_key, value)
 	} else {
 		if key_id >= 0 {
 			_, valid := SubscribedMessagesMap[key_id]
 			if valid {
 				log.Debug("Key already exists, checking next field")
 				key_id++
-				Messages(routing_key, value)
+				messages(routing_key, value)
 			} else {
 				log.Debug("Key does not exists, adding new field")
-				t := time.Now()
-				log.Trace(t.Format(TIMEFORMAT))
-				entry := MapMessage{value, routing_key, t.Format(TIMEFORMAT), true}
+				entry := MapMessage{value, routing_key, getTime(), true}
 				SubscribedMessagesMap[key_id] = &entry
 				key_id++
 			}
@@ -42,9 +48,9 @@ func Messages(routing_key string, value string) {
 	}).Debug("Received this string")
 }
 
-func Subscribe(Messages func(string, string)) amqp.Channel {
+func Subscribe() {
 	x := "First Test"
-	Messages("Key", x)
+	messages("Key", x)
 
 	log.Trace("Beginning rabbitmq initialisation")
 
@@ -114,17 +120,18 @@ func Subscribe(Messages func(string, string)) amqp.Channel {
 			log.Debug("Sending message to callback")
 			log.Debug(d.RoutingKey)
 			s := string(d.Body[:])
-			Messages(d.RoutingKey, s)
-			CheckState(*ch)
+			messages(d.RoutingKey, s)
 		}
+		checkState(*ch)
+		//This function is checked after to see if multiple errors occur then to
+		//through an event message
 	}()
 
 	log.Printf(" [*] Waiting for logs. To exit press CTRL+C")
 	<-forever
-	return *ch
 }
 
-func PublishRequestPower(ch *amqp.Channel, message RequestPower) {
+func PublishRequestPower(message RequestPower) {
 	requestPower, err := json.Marshal(message)
 	failOnError(err, "Failed to convert RequestPower")
 	err = ch.Publish(
@@ -139,7 +146,7 @@ func PublishRequestPower(ch *amqp.Channel, message RequestPower) {
 	failOnError(err, "Failed to publish RequestPower topic")
 }
 
-func PublishEventFH(ch *amqp.Channel, message EventFH) {
+func PublishEventFH(message EventFH) {
 	eventFH, err := json.Marshal(message)
 	failOnError(err, "Failed to convert eventFH")
 	err = ch.Publish(

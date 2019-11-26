@@ -15,6 +15,7 @@ else
     go get -v github.com/streadway/amqp
     go get -v github.com/sirupsen/logrus
     go get -v github.com/scorredoira/email
+    go get -v gopkg.in/yaml.v2
     export GOBIN=$GOPATH/bin
     echo $GOPATH
     go install src/Pub/main.go

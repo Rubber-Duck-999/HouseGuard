@@ -1,5 +1,7 @@
 /FaultHandler/src/github.com/*
 /FaultHandler/src/golang.org/*
+/FaultHandler/src/gopkg.in/*
 /FaultHandler/bin/
 /FaultHandler/pkg/
 /CameraMonitor/build/
+/FaultHandler/config.yml

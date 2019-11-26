@@ -1,16 +1,27 @@
 package main
 
 import (
-	"fmt"
-
+	"config"
 	log "github.com/sirupsen/logrus"
+	"os"
+
 	"rabbitmq"
 )
 
 func main() {
 	log.SetLevel(log.DebugLevel)
 	log.Trace("FH - Beginning to run Fault Handler Program")
-	ch := rabbitmq.Subscribe(rabbitmq.Messages)
-	log.Trace("Channel is : ")
-	fmt.Println(ch)
+	file := "/home/ubuntu/environment/HouseGuard/FaultHandler/config.yml"
+	var data config.ConfigTypes
+	if config.Exists(file) {
+		data := config.GetData(file)
+		log.Debug(data)
+	} else {
+		os.Exit(1)
+	}
+	rabbitmq.SetEmailSettings(data.EmailSettings.Email,
+		data.EmailSettings.Password,
+		data.EmailSettings.Name,
+		data.EmailSettings.To_email)
+	rabbitmq.Subscribe()
 }
