@@ -8,6 +8,11 @@ import (
 	"github.com/streadway/amqp"
 )
 
+func init() {
+	log.SetLevel(log.TraceLevel)
+	log.Debug("Initialised rabbitmq package")
+}
+
 func failOnError(err error, msg string) {
 	if err != nil {
 		log.WithFields(log.Fields{
@@ -36,6 +41,9 @@ func messages(routing_key string, value string) {
 				key_id++
 				messages(routing_key, value)
 			} else {
+				log.WithFields(log.Fields{
+					"Value": value,
+				}).Debug("Received this string")
 				log.Debug("Key does not exists, adding new field")
 				entry := MapMessage{value, routing_key, getTime(), true}
 				SubscribedMessagesMap[key_id] = &entry
@@ -43,9 +51,6 @@ func messages(routing_key string, value string) {
 			}
 		}
 	}
-	log.WithFields(log.Fields{
-		"Value": value,
-	}).Debug("Received this string")
 }
 
 func Subscribe() {
@@ -122,7 +127,7 @@ func Subscribe() {
 			s := string(d.Body[:])
 			messages(d.RoutingKey, s)
 		}
-		checkState(*ch)
+		checkState()
 		//This function is checked after to see if multiple errors occur then to
 		//through an event message
 	}()

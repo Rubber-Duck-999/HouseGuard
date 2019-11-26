@@ -6,7 +6,6 @@ import (
 	"message"
 
 	log "github.com/sirupsen/logrus"
-	"github.com/streadway/amqp"
 )
 
 func messageFailure(issue bool) {
@@ -28,7 +27,7 @@ func SetEmailSettings(email string, password string, from_name string, to_email 
 	return shutdown_valid
 }
 
-func checkState(ch amqp.Channel) {
+func checkState() {
 	for message_id := range SubscribedMessagesMap {
 		if SubscribedMessagesMap[message_id].valid == true {
 			switch {

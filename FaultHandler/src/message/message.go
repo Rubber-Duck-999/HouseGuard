@@ -17,6 +17,7 @@ var _from_name string
 var _to_email string
 
 func init() {
+	log.SetLevel(log.TraceLevel)
 	log.Debug("Initialised message package")
 	_state = true
 	_subject = ""
