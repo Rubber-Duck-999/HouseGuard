@@ -5,3 +5,5 @@
 /FaultHandler/pkg/
 /CameraMonitor/build/
 /FaultHandler/config.yml
+*.project
+*.pydevproject
