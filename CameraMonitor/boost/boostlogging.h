@@ -1,29 +1,43 @@
-#ifndef boostlogging_h__
-#define boostlogging_h__
+#include <string>
+#include "boost/log/trivial.hpp"
+#include "boost/log/utility/setup.hpp"
 
-#define BOOST_LOG_DYN_LINK 1 // necessary when linking the boost_log library dynamically
+#ifndef LOGGING_h
+#define LOGGING_h
 
-#include <boost/log/trivial.hpp>
-#include <boost/log/sources/global_logger_storage.hpp>
+static void init_log()
+{
+    static const std::string COMMON_FMT("[%TimeStamp%][%Severity%]:  %Message%");
 
-// the logs are also written to LOGFILE
-#define LOGFILE "logfile.log"
+    boost::log::register_simple_formatter_factory< boost::log::trivial::severity_level, char >("Severity");
 
-// just log messages with severity >= SEVERITY_THRESHOLD are written
-#define SEVERITY_THRESHOLD logging::trivial::warning
+    // Output message to console
+    boost::log::add_console_log(
+        std::cout,
+        boost::log::keywords::format = COMMON_FMT,
+        boost::log::keywords::auto_flush = true
+    );
 
-// register a global logger
-BOOST_LOG_GLOBAL_LOGGER(logger, boost::log::sources::severity_logger_mt<boost::log::trivial::severity_level>)
+    // Output message to file, rotates when file reached 1mb or at midnight every day. Each log file
+    // is capped at 1mb and total is 20mb
+    boost::log::add_file_log (
+        boost::log::keywords::file_name = "sample_%3N.log",
+        boost::log::keywords::rotation_size = 1 * 1024 * 1024,
+        boost::log::keywords::max_size = 20 * 1024 * 1024,
+        boost::log::keywords::time_based_rotation = boost::log::sinks::file::rotation_at_time_point(0, 0, 0),
+        boost::log::keywords::format = COMMON_FMT,
+        boost::log::keywords::auto_flush = true
+    );
+    
+    boost::log::add_common_attributes();
 
-// just a helper macro used by the macros below - don't use it in your code
-#define LOG(severity) BOOST_LOG_SEV(logger::get(),boost::log::trivial::severity)
+    // Only output message with trace or higher severity in Release
+#ifndef _DEBUG
+    boost::log::core::get()->set_filter(
+        boost::log::trivial::severity >= boost::log::trivial::trace
+    );
+#endif
 
-// ===== log macros =====
-#define LOG_TRACE   LOG(trace)
-#define LOG_DEBUG   LOG(debug)
-#define LOG_INFO    LOG(info)
-#define LOG_WARNING LOG(warning)
-#define LOG_ERROR   LOG(error)
-#define LOG_FATAL   LOG(fatal)
+}
 
 #endif

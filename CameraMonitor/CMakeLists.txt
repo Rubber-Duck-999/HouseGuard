@@ -8,11 +8,6 @@ set(Boost_USE_STATIC_LIBS ON)
 find_package(Boost 1.61.0 REQUIRED COMPONENTS log)
 find_package(Threads)
 
-include_directories(${Boost_INCLUDE_DIR})
-include_directories(${CMAKE_SOURCE_DIR}/boost)
-
-add_executable(exeCameraMonitor src/test.cpp)
-
 # Folder where the Coverage module is
 #set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
 
@@ -46,4 +41,4 @@ add_executable(${PROJECT_NAME} ${SOURCE})
 target_link_libraries(${PROJECT_NAME}
                        ${Boost_LIBRARIES} 
                        pthread
-                    Threads::Threads)
+                       Threads::Threads)

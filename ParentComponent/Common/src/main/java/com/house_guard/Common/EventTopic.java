@@ -38,7 +38,5 @@ public class EventTopic
 	private String error;
 	private String time;
 	private Integer severity;
-	
-	
 
 }
