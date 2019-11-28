@@ -7,3 +7,4 @@
 /FaultHandler/config.yml
 *.project
 *.pydevproject
+/SystemProcessor/target/*
