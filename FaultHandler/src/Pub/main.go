@@ -1,9 +1,9 @@
 package main
 
 import (
-	//"config"
+	"config"
 	log "github.com/sirupsen/logrus"
-	//"os"
+	"os"
 
 	"rabbitmq"
 )
@@ -19,7 +19,7 @@ func main() {
 	} else {
 		os.Exit(1)
 	}
-	valid := rabbitmq.SetEmailSettings(data.EmailSettings.Email,
+	rabbitmq.SetEmailSettings(data.EmailSettings.Email,
 		data.EmailSettings.Password,
 		data.EmailSettings.Name,
 		data.EmailSettings.To_email)

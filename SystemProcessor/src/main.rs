@@ -6,9 +6,21 @@ use clap::{
     Arg,
 };
 
-use std::{process,};
+use std::{process};
 
-fn main() 
+use std::thread;
+use std::time::Duration;
+
+#[macro_use]
+extern crate log;
+extern crate simple_logger;
+
+use log::Level;
+
+use std::fs::File;
+
+
+fn main()
 {
     let matches = App::new("rust-rabbitmq-example")
         .version("0.0.1")
@@ -25,13 +37,28 @@ fn main()
         .unwrap_or("1")
         .parse()
         .unwrap();
-    
-    
-    const COMPONENT_NAME:&str = "SYP";
-    let _value:u32 = 32;
-    println!("Initialising System Processor Component = {}", COMPONENT_NAME);
-    system::processes::ps();
-    
+
+    simple_logger::init_with_level(Level::Warn).unwrap();
+
+    warn!("This is an example message.");
+
+    if log_enabled!(Level::Info) {
+        let x = 3 * 4; // expensive computation
+        info!("the answer was: {}", x);
+    }
+
+    println!("Initialising System Processor Component = {}", system::constants::COMPONENT_NAME);
+    //system::processes::ps();
+
+
+    let mut channel = rabbitmq::interaction::SessionRabbitmq { ..Default::default() };
+
+    println!("Declaring consumer...");
+    channel.Consume();
+    println!("Starting consumer ");
+
+    println!("Declaring publish...");
+    channel.publish(rabbitmq::types::ISSUE_NOTICE, system::constants::COMPONENT_NAME);
+
     process::exit(1);
-    
 }

@@ -1,0 +1,12 @@
+/home/simon/Documents/HouseGuard/SystemProcessor/target/rls/debug/deps/amq_proto-55a473d29526e491.rmeta: /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/lib.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/framing.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/table.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/method.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/codegen_macros.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/error.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/protocol.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/method_frame_methods.rs
+
+/home/simon/Documents/HouseGuard/SystemProcessor/target/rls/debug/deps/amq_proto-55a473d29526e491.d: /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/lib.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/framing.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/table.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/method.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/codegen_macros.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/error.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/protocol.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/method_frame_methods.rs
+
+/home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/lib.rs:
+/home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/framing.rs:
+/home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/table.rs:
+/home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/method.rs:
+/home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/codegen_macros.rs:
+/home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/error.rs:
+/home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/protocol.rs:
+/home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amq-proto-0.1.0/src/method_frame_methods.rs:

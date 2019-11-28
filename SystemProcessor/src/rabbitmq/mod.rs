@@ -1,1 +1,2 @@
-pub mod session_rabbitmq;
+pub mod types;
+pub mod interaction;

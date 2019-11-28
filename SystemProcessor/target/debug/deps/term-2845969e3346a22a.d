@@ -1,0 +1,12 @@
+/home/simon/Documents/HouseGuard/SystemProcessor/target/debug/deps/term-2845969e3346a22a.rmeta: /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/lib.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/mod.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/searcher.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parser/compiled.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parser/names.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parm.rs
+
+/home/simon/Documents/HouseGuard/SystemProcessor/target/debug/deps/libterm-2845969e3346a22a.rlib: /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/lib.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/mod.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/searcher.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parser/compiled.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parser/names.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parm.rs
+
+/home/simon/Documents/HouseGuard/SystemProcessor/target/debug/deps/term-2845969e3346a22a.d: /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/lib.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/mod.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/searcher.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parser/compiled.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parser/names.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parm.rs
+
+/home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/lib.rs:
+/home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/mod.rs:
+/home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/searcher.rs:
+/home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parser/compiled.rs:
+/home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parser/names.rs:
+/home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/term-0.6.1/src/terminfo/parm.rs:

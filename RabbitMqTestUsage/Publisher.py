@@ -12,14 +12,14 @@ connection = pika.BlockingConnection(
     pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
 
-channel.exchange_declare(exchange='direct_pub', exchange_type='direct')
+channel.exchange_declare(exchange='topics', exchange_type='topic')
 
-severity = 'publisher'
+severity = 'Power.Notice'
 message = 'I am the publisher!'
 x = 0
 while x < 10:
     channel.basic_publish(
-        exchange='direct_pub', routing_key=severity, body=message)
+        exchange='topics', routing_key=severity, body=message)
     x = x + 1
     time.sleep(1)
     print(" [x] Sent %r:%r" % (severity, message))

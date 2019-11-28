@@ -1,0 +1,13 @@
+/home/simon/Documents/HouseGuard/SystemProcessor/target/debug/deps/amqp-c0c49c6673ff7c37.rmeta: /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/lib.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/connection.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/channel.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/session.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/basic.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/amqp_error.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/builders.rs
+
+/home/simon/Documents/HouseGuard/SystemProcessor/target/debug/deps/libamqp-c0c49c6673ff7c37.rlib: /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/lib.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/connection.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/channel.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/session.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/basic.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/amqp_error.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/builders.rs
+
+/home/simon/Documents/HouseGuard/SystemProcessor/target/debug/deps/amqp-c0c49c6673ff7c37.d: /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/lib.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/connection.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/channel.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/session.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/basic.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/amqp_error.rs /home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/builders.rs
+
+/home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/lib.rs:
+/home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/connection.rs:
+/home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/channel.rs:
+/home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/session.rs:
+/home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/basic.rs:
+/home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/amqp_error.rs:
+/home/simon/.cargo/registry/src/github.com-1ecc6299db9ec823/amqp-0.1.3/src/builders.rs:
