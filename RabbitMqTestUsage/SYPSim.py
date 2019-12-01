@@ -28,7 +28,7 @@ queue_name = result.method.queue
 channel.queue_bind(exchange='topics', queue=queue_name, routing_key=key_event)
 print("Publishing to SYP")
 x = 0
-while x < 100:
+while x < 51:
     y = str(x)
     channel.basic_publish(exchange='topics', routing_key=key_publish, body=y)
     x = x + 1
@@ -41,5 +41,5 @@ def callback(ch, method, properties, body):
     time.sleep(1)
     channel.basic_publish(exchange='topics', routing_key=key_publish, body="I am the SIM")
 
-#channel.basic_consume(queue=queue_name, on_message_callback=callback, auto_ack=False)
-#channel.start_consuming()
+channel.basic_consume(queue=queue_name, on_message_callback=callback, auto_ack=False)
+channel.start_consuming()

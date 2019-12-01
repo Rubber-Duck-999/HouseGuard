@@ -19,9 +19,9 @@ use log::Level;
 
 use std::fs::File;
 
-
 fn main()
 {
+    /*
     let matches = App::new("rust-rabbitmq-example")
         .version("0.0.1")
         .about("Simulate a RabbitMQ environment with consumer(s) and producer(s).")
@@ -37,7 +37,7 @@ fn main()
         .unwrap_or("1")
         .parse()
         .unwrap();
-
+    */
     simple_logger::init_with_level(Level::Warn).unwrap();
 
     warn!("This is an example message.");
@@ -47,18 +47,27 @@ fn main()
         info!("the answer was: {}", x);
     }
 
-    println!("Initialising System Processor Component = {}", system::constants::COMPONENT_NAME);
-    //system::processes::ps();
+    warn!("Initialising System Processor Component = {}", system::constants::COMPONENT_NAME);
 
+    let mut process_check = system::processes::Processes::new();
+    let mut duplicate_found = process_check.ps_find(system::constants::COMPONENT_SIM);
+
+    if(duplicate_found == 2)
+    {
+        warn!("We have found SYPSim twice");
+    }
+
+    let mut component:i32 = 37533;
+
+    process_check.kill_duplicate_component(system::constants::COMPONENT_SIM);
 
     let mut channel = rabbitmq::interaction::SessionRabbitmq { ..Default::default() };
 
-    println!("Declaring consumer...");
-    channel.Consume();
-    println!("Starting consumer ");
+    trace!("Declaring consumer...");
+    //channel.Consume();
 
-    println!("Declaring publish...");
-    channel.publish(rabbitmq::types::ISSUE_NOTICE, system::constants::COMPONENT_NAME);
+    trace!("Declaring publish...");
+    //channel.publish(rabbitmq::types::ISSUE_NOTICE, system::constants::COMPONENT_NAME);
 
-    process::exit(1);
+    process::exit(0);
 }

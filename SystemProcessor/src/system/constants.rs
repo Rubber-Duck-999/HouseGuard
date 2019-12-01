@@ -5,3 +5,6 @@ pub const FAULT_HANDLER:&str = "FH";
 pub const DATABASE_MANAGER:&str = "DBM";
 pub const USER_PANEL:&str = "UP";
 pub const COMPONENT_NAME:&str = "SYP";
+
+pub const COMPONENT_EXE:&str = "exeSystemProcessor";
+pub const COMPONENT_SIM:&str = "python3 SYPSim.py";
