@@ -98,22 +98,14 @@ impl Processes
 
     pub fn start_process(&mut self, component:&str)
     {
-        let mut output = Command::new("~/Documents/HouseGuard/FaultHandler/bin/exeFaultHandler")
-                             .spawn()
-                             .expect("FATA[0000] File doesn't exist");
-        match output
-        {
-            Ok(output)=>
-            {
-                warn!("Component has started successfully : {}", component);
-            },
-            Err(e)=>
-            {
-                error!("Component has failed to run because \n {:?}", e);
-            }
-        }
-        //warn!("Status: {}", output.status);
-        //warn!("stdout: {}", String::from_utf8_lossy(&output.stdout));
+        debug!("Starting process : {}", component);
+
+        let status = Command::new("sh")
+                             .arg(component)
+                             .status();
+                             //.spawn();
+
+        debug!("Process : {} exited with: {:?} ", component, status);
     }
 
     pub fn kill_component(&mut self, component:&str, restart:bool) -> bool

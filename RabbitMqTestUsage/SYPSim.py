@@ -17,7 +17,7 @@ import sys, time, json
 print("## Beginning SYPSIM")
 connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
-channel.exchange_declare(exchange='topics', exchange_type='topic', durable=False)
+channel.exchange_declare(exchange='topics', exchange_type='topic', durable=True)
 key_publish = 'Power.Notice'
 key_event = 'Issue.Notice'
 #

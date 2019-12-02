@@ -40,11 +40,9 @@ fn main()
     */
     simple_logger::init_with_level(Level::Warn).unwrap();
 
-    warn!("This is an example message.");
 
     if log_enabled!(Level::Info) {
-        let x = 3 * 4; // expensive computation
-        info!("the answer was: {}", x);
+        info!("Logging has been enabled to info");
     }
 
     warn!("Initialising System Processor Component = {}", system::constants::COMPONENT_NAME);
@@ -57,10 +55,10 @@ fn main()
     let mut channel = rabbitmq::interaction::SessionRabbitmq { ..Default::default() };
 
     trace!("Declaring consumer...");
-    //channel.Consume();
+    channel.Consume();
 
     trace!("Declaring publish...");
-    //channel.publish(rabbitmq::types::ISSUE_NOTICE, system::constants::COMPONENT_NAME);
+    channel.publish(rabbitmq::types::ISSUE_NOTICE, system::constants::COMPONENT_NAME);
 
     process::exit(0);
 }
