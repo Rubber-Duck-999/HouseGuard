@@ -17,8 +17,7 @@ var _from_name string
 var _to_email string
 
 func init() {
-	log.SetLevel(log.TraceLevel)
-	log.Debug("Initialised message package")
+	log.Trace("Initialised message package")
 	_state = true
 	_subject = ""
 	_body = ""
@@ -38,6 +37,7 @@ func SetState(state bool) {
 }
 
 func SetSettings(email string, password string, from_email string, from_name string, to_email string) {
+	log.Trace("Setting settings")
 	_subject = "Test Email"
 	_body = ""
 	_email = email
@@ -62,10 +62,7 @@ func SendSMS(issue string) bool {
 }
 
 func SendEmailRoutine(issue string) bool {
-	event := false
-	go func() {
-		event = sendEmail(issue)
-	}()
+	event := sendEmail(issue)
 	return event
 }
 
@@ -81,7 +78,8 @@ func sendEmail(issue string) bool {
 		// send it
 		auth := smtp.PlainAuth("", _email, _password, "smtp.zoho.eu")
 		if err := email.Send("smtp.zoho.eu:587", auth, m); err != nil {
-			log.Fatal(err)
+			log.Warn("Found a issue")
+			log.Warn(err)
 			fatal = true
 		}
 	}

@@ -16,10 +16,11 @@ else
     go get -v github.com/sirupsen/logrus
     go get -v github.com/scorredoira/email
     go get -v gopkg.in/yaml.v2
+    go get -v github.com/akamensky/argparse
+    go get -v github.com/clarketm/json
     export GOBIN=$GOPATH/bin
     echo $GOPATH
     go build -o bin/exeFaultHandler src/Pub/main.go
     #go install src/Pub/main.go
     exit 0
 fi
-

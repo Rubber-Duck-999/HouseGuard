@@ -6,6 +6,8 @@ extern crate simple_logger;
 use std::collections::HashMap;
 use psutil::process::Process;
 
+use std::process::Command;
+
 struct Component
 {
     _name: String,
@@ -90,29 +92,104 @@ impl Processes
                 amount_found += 1;
             }
         }
+        warn!("Amount of processes: {}", amount_found);
         return amount_found;
+    }
+
+    pub fn start_process(&mut self, component:&str)
+    {
+        let mut output = Command::new("~/Documents/HouseGuard/FaultHandler/bin/exeFaultHandler")
+                             .spawn()
+                             .expect("FATA[0000] File doesn't exist");
+        match output
+        {
+            Ok(output)=>
+            {
+                warn!("Component has started successfully : {}", component);
+            },
+            Err(e)=>
+            {
+                error!("Component has failed to run because \n {:?}", e);
+            }
+        }
+        //warn!("Status: {}", output.status);
+        //warn!("stdout: {}", String::from_utf8_lossy(&output.stdout));
+    }
+
+    pub fn kill_component(&mut self, component:&str, restart:bool) -> bool
+    {
+        let mut found = self.ps_find(component);
+        let result = match found
+        {
+            0 =>
+            {
+                warn!("No process found");
+                if restart
+                {
+                    self.start_process(component);
+                }
+            },
+            1 =>
+            {
+                warn!("Component found once");
+                self.kill_main_component(component);
+            }
+            _ =>
+            {
+                self.kill_duplicate_component(component);
+            }
+
+        };
+        return true;
+    }
+
+    fn kill_main_component(&mut self, component:&str)
+    {
+        let mut pid:i32 = 0;
+        let mut component_vec: Vec<i32> = Vec::new();
+        let mut iter:i8 = 0;
+        for (key, val) in self.component_map.iter()
+        {
+            warn!("key: {} val name: {} val pid: {} val alive: {}", key, val._name, val._pid, val._alive);
+            if val._name.contains(component)
+            {
+                warn!("Found Process : {}", component);
+                component_vec.push(val._pid);
+            }
+        }
+        for i in component_vec
+        {
+            warn!("Killing duplicate : {} pid : {}", component, i);
+            self.kill_component_pid(i);
+        }
     }
 
     pub fn kill_duplicate_component(&mut self, component:&str)
     {
         let mut pid:i32 = 0;
+        let mut component_vec: Vec<i32> = Vec::new();
+        let mut iter:i8 = 0;
         for (key, val) in self.component_map.iter()
         {
             warn!("key: {} val name: {} val pid: {} val alive: {}", key, val._name, val._pid, val._alive);
-            if val._name == "python3 SYPSim.py"
+            if val._name.contains(component)
             {
-                pid = val._pid;
-                warn!("Found Sim");
+                iter += 1;
+                if iter > 1
+                {
+                    warn!("Found Process : {}", component);
+                    component_vec.push(val._pid);
+                }
             }
         }
-        if pid != 0
+        for i in component_vec
         {
-            warn!("Killing sim");
-            self.ps_kill_component(pid);
+            warn!("Killing duplicate : {} pid : {}", component, i);
+            self.kill_component_pid(i);
         }
     }
 
-    pub fn ps_kill_component(&mut self, component:i32)
+    pub fn kill_component_pid(&mut self, component:i32)
     {
         let process = Process::new(component).unwrap();
 

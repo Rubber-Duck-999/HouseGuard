@@ -50,16 +50,9 @@ fn main()
     warn!("Initialising System Processor Component = {}", system::constants::COMPONENT_NAME);
 
     let mut process_check = system::processes::Processes::new();
-    let mut duplicate_found = process_check.ps_find(system::constants::COMPONENT_SIM);
 
-    if(duplicate_found == 2)
-    {
-        warn!("We have found SYPSim twice");
-    }
-
-    let mut component:i32 = 37533;
-
-    process_check.kill_duplicate_component(system::constants::COMPONENT_SIM);
+    process_check.start_process(system::constants::FAULT_HANDLER_EXE);
+    let mut found = process_check.kill_component(system::constants::FAULT_HANDLER_EXE, false);
 
     let mut channel = rabbitmq::interaction::SessionRabbitmq { ..Default::default() };
 

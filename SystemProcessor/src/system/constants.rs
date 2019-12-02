@@ -8,3 +8,4 @@ pub const COMPONENT_NAME:&str = "SYP";
 
 pub const COMPONENT_EXE:&str = "exeSystemProcessor";
 pub const COMPONENT_SIM:&str = "python3 SYPSim.py";
+pub const FAULT_HANDLER_EXE:&str = "exeFaultHandler";

@@ -4,6 +4,7 @@ import (
 	"config"
 	log "github.com/sirupsen/logrus"
 	"os"
+	"github.com/akamensky/argparse"
 
 	"rabbitmq"
 )
@@ -11,14 +12,29 @@ import (
 func main() {
 	log.SetLevel(log.TraceLevel)
 	log.Trace("FH - Beginning to run Fault Handler Program")
-	file := "/home/ubuntu/environment/HouseGuard/FaultHandler/config.yml"
+	parser := argparse.NewParser("file", "Config file for runtime purpose")
+	// Create string flag
+	f := parser.String("f", "config", &argparse.Options{Required: true, Help: "Necessary config"})
+	// Parse input
+	err := parser.Parse(os.Args)
+	if err != nil {
+		// In case of error print error and print usage
+		// This can also be done by passing -h or --help flags
+		log.Error(parser.Usage(err))
+		os.Exit(2)
+	}
+
+
+
+	file := *f
 	var data config.ConfigTypes
 	if config.Exists(file) {
-		data := config.GetData(file)
-		log.Debug(data)
+		config.GetData(&data, file)
 	} else {
-		os.Exit(1)
+		log.Error("File doesn't exist")
+		os.Exit(2)
 	}
+	log.Trace(data.EmailSettings.Email)
 	rabbitmq.SetEmailSettings(data.EmailSettings.Email,
 		data.EmailSettings.Password,
 		data.EmailSettings.Name,

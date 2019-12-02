@@ -21,16 +21,16 @@ type MonitorState struct {
 }
 
 type RequestPower struct {
-	power     string
-	severity  int
-	component string
+	Power     string `json:"power"`
+	Severity  int    `json:"severity"`
+	Component string `json:"component"`
 }
 
 type EventFH struct {
-	component    string
-	error_string string
-	time         string
-	severity     int
+	Component    string
+	Error_string string
+	Time         string
+	Severity     int
 }
 
 type MapMessage struct {
@@ -51,6 +51,7 @@ const MOTIONDETECTED string = "Motion.Detected" //Level 5
 const ISSUENOTICE string = "Issue.Notice"
 const MONITORSTATE string = "Monitor.State"
 const REQUESTPOWER string = "Request.Power"
+const EVENTFH string = "Event.FH"
 const EXCHANGENAME string = "topics"
 const EXCHANGETYPE string = "topic"
 const TIMEFORMAT string = "20060102150405"

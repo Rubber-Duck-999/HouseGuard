@@ -10,25 +10,28 @@ import (
 
 func messageFailure(issue bool) {
 	if issue {
-		event := EventFH{COMPONENT, SERVERERROR, getTime(), SERVERSEVERITY}
-		PublishEventFH(event)
+		PublishEventFH(COMPONENT, SERVERERROR, getTime(), SERVERSEVERITY)
 	}
 }
 
 func SetEmailSettings(email string, password string, from_name string, to_email string) bool {
 	shutdown_valid := false
+	log.Trace("Email is: ", email)
 	message.SetSettings(email, password, email, from_name, to_email)
-	setup_valid := message.TestEmail()
-	if setup_valid == false {
-		log.Fatal("We have major flaw - shutting down node and diagonose")
+	setup_invalid := message.TestEmail()
+	log.Debug("Email test success : ", !setup_invalid)
+	if setup_invalid == true {
 		shutdown_valid = true
-		//messageFailure(shutdown_valid)
+		messageFailure(shutdown_valid)
+		log.Fatal("We have major flaw - shutting down node and diagonose")
 	}
 	return shutdown_valid
 }
 
 func checkState() {
 	for message_id := range SubscribedMessagesMap {
+		log.Debug("Message id is: ", message_id)
+		log.Debug("Message routing key is: ", SubscribedMessagesMap[message_id].routing_key)
 		if SubscribedMessagesMap[message_id].valid == true {
 			switch {
 			case SubscribedMessagesMap[message_id].routing_key == FAILURENETWORK:
@@ -51,24 +54,24 @@ func checkState() {
 
 			case SubscribedMessagesMap[message_id].routing_key == FAILURECAMERA:
 				var message FailureMessage
+				log.Debug("Creating temp")
 				json.Unmarshal([]byte(SubscribedMessagesMap[message_id].message), &message)
-				power := RequestPower{"restart", message.Severity, CAMERAMONITOR}
-				PublishRequestPower(power)
+				log.Debug("Converting json data")
+				PublishRequestPower("restart", message.Severity, CAMERAMONITOR)
+				log.Debug("Published Request Power")
 				SubscribedMessagesMap[message_id].valid = false
 
 			case SubscribedMessagesMap[message_id].routing_key == ISSUENOTICE:
 				var message IssueNotice
 				json.Unmarshal([]byte(SubscribedMessagesMap[message_id].message), &message)
-				power := RequestPower{message.action, message.severity, message.component}
-				PublishRequestPower(power)
+				PublishRequestPower(message.action, message.severity, message.component)
 				SubscribedMessagesMap[message_id].valid = false
 
 			case SubscribedMessagesMap[message_id].routing_key == MONITORSTATE:
 				var monitor MonitorState
 				json.Unmarshal([]byte(SubscribedMessagesMap[message_id].message), &monitor)
 				message.SetState(monitor.state)
-				event := EventFH{COMPONENT, UPDATESTATEERROR, getTime(), STATEUPDATESEVERITY}
-				PublishEventFH(event)
+				PublishEventFH(COMPONENT, UPDATESTATEERROR, getTime(), STATEUPDATESEVERITY)
 				SubscribedMessagesMap[message_id].valid = false
 
 			default:

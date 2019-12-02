@@ -18,17 +18,15 @@ func Exists(name string) bool {
 	return true
 }
 
-func GetData(file string) ConfigTypes {
+func GetData(cfg *ConfigTypes, file string) {
 	f, err := os.Open(file)
 	if err != nil {
 		log.Fatal("Failed to open file")
 	}
 
-	var cfg ConfigTypes
 	decoder := yaml.NewDecoder(f)
 	err = decoder.Decode(&cfg)
 	if err != nil {
 		log.Fatal("Couldn't edit file")
 	}
-	return cfg
 }
