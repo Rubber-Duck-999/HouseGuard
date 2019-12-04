@@ -1,8 +1,5 @@
 #!/bin/sh
 
-cd ../
-
-./setEnv.sh
 
 
 if [ -z $BWD ];
@@ -10,17 +7,14 @@ then
     echo "Failure in Env Var BWD - " $BWD
     exit 1
 else
-    cd $BWD/FaultHandler
-    export GOPATH=$BWD/FaultHandler
+    cd src
     go get -v github.com/streadway/amqp
     go get -v github.com/sirupsen/logrus
     go get -v github.com/scorredoira/email
     go get -v gopkg.in/yaml.v2
     go get -v github.com/akamensky/argparse
     go get -v github.com/clarketm/json
-    export GOBIN=$GOPATH/bin
-    echo $GOPATH
-    go build -o bin/exeFaultHandler src/Pub/main.go
+    go install github.com/Rubber-Duck-999/exeFaultHandler
+    go test -v github.com/Rubber-Duck-999/config
     #go install src/Pub/main.go
-    exit 0
 fi

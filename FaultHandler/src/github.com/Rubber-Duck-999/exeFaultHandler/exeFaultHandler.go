@@ -1,12 +1,12 @@
 package main
 
 import (
-	"config"
+	"github.com/Rubber-Duck-999/config"
+	"github.com/akamensky/argparse"
 	log "github.com/sirupsen/logrus"
 	"os"
-	"github.com/akamensky/argparse"
 
-	"rabbitmq"
+	"github.com/Rubber-Duck-999/rabbitmq"
 )
 
 func main() {
@@ -23,8 +23,6 @@ func main() {
 		log.Error(parser.Usage(err))
 		os.Exit(2)
 	}
-
-
 
 	file := *f
 	var data config.ConfigTypes

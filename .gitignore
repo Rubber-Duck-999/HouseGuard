@@ -1,4 +1,8 @@
-/FaultHandler/src/github.com/*
+/FaultHandler/src/github.com/akamensky
+/FaultHandler/src/github.com/clarketm
+/FaultHandler/src/github.com/scorredoira
+/FaultHandler/src/github.com/sirupsen
+/FaultHandler/src/github.com/streadway
 /FaultHandler/src/golang.org/*
 /FaultHandler/src/gopkg.in/*
 /FaultHandler/bin/

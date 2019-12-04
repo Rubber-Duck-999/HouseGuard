@@ -3,7 +3,7 @@ package rabbitmq
 import (
 	"encoding/json"
 
-	"message"
+	"github.com/Rubber-Duck-999/message"
 
 	log "github.com/sirupsen/logrus"
 )
