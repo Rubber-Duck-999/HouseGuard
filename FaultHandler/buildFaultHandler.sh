@@ -15,6 +15,6 @@ else
     go get -v github.com/akamensky/argparse
     go get -v github.com/clarketm/json
     go install github.com/Rubber-Duck-999/exeFaultHandler
-    go test -v github.com/Rubber-Duck-999/config
+    go test -cover github.com/Rubber-Duck-999/...
     #go install src/Pub/main.go
 fi

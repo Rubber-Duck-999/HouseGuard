@@ -33,7 +33,7 @@ func TestFolder(t *testing.T) {
 	}
 }
 
-func TestConfigPullNull(t *testing.T) {
+func TestConfigGetNull(t *testing.T) {
 	var file string = `/home/ubuntu/environment/HouseGuard/FaultHandler/config.yml-sample`
 	var data ConfigTypes
 	GetData(&data, file)
@@ -47,6 +47,24 @@ func TestConfigPullNull(t *testing.T) {
 		t.Error("Failure")
 	}
 	if data.EmailSettings.To_email == "" {
+		t.Error("Failure")
+	}
+}
+
+func TestConfigGetAll(t *testing.T) {
+	var file string = `/home/ubuntu/environment/HouseGuard/FaultHandler/config.yml-sample`
+	var data ConfigTypes
+	GetData(&data, file)
+	if data.EmailSettings.Email != "myemail" {
+		t.Error("Failure")
+	}
+	if data.EmailSettings.Password != "password" {
+		t.Error("Failure")
+	}
+	if data.EmailSettings.Name != "rubber-duck-999" {
+		t.Error("Failure")
+	}
+	if data.EmailSettings.To_email != "external@gmail" {
 		t.Error("Failure")
 	}
 }

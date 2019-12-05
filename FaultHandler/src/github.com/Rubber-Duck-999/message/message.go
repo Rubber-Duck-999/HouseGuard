@@ -36,6 +36,10 @@ func SetState(state bool) {
 	_state = state
 }
 
+func getState() bool {
+	return _state
+}
+
 func SetSettings(email string, password string, from_email string, from_name string, to_email string) {
 	log.Trace("Setting settings")
 	_subject = "Test Email"
