@@ -12,14 +12,3 @@ variables:
 steps:
 - script: echo Hello First
   displayName: 'First Task'
-
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'ParentComponent/pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: false
-    testResultsFiles: '**/TEST-*.xml'
-    goals: 'install'

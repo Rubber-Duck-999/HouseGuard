@@ -18,7 +18,7 @@ var _to_email string
 
 func init() {
 	log.Trace("Initialised message package")
-	_state = true
+	_state = false
 	_subject = ""
 	_body = ""
 	_email = ""
