@@ -3,14 +3,24 @@
 package rabbitmq
 
 import (
+	"errors"
+	"strings"
 	"testing"
 )
 
 // Check that State is set
 // then run this test will prove it is set
-func TestStateSetTrue(t *testing.T) {
-	SetState(true)
-	if getState() == false {
+func TestPublishFailRabbit(t *testing.T) {
+	init_err = errors.New("dial tcp 127.0.0.1:5672: getsockopt: connection refused")
+	failure := ""
+	failure = messageFailure(true)
+	if !strings.Contains(FAILUREPUBLISH, failure) {
+		t.Error("Failure")
+	} else if strings.Contains(FAILURECONVERT, failure) {
 		t.Error("Failure")
 	}
+}
+
+func TestMessagesPass(t *testing.T) {
+	messages(FAILURENETWORK, "")
 }

@@ -8,10 +8,12 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func messageFailure(issue bool) {
+func messageFailure(issue bool) string {
+	fail := ""
 	if issue {
-		PublishEventFH(COMPONENT, SERVERERROR, getTime(), SERVERSEVERITY)
+		fail = PublishEventFH(COMPONENT, SERVERERROR, getTime(), SERVERSEVERITY)
 	}
+	return fail
 }
 
 func SetEmailSettings(email string, password string, from_name string, to_email string) bool {

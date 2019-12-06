@@ -61,6 +61,8 @@ const UPDATESTATEERROR string = "We have received a brand new state update"
 const SERVERERROR string = "Server is failing to send"
 const STATEUPDATESEVERITY int = 2
 const SERVERSEVERITY int = 4
+const FAILURECONVERT string = "Failed to convert"
+const FAILUREPUBLISH string = "Failed to publish"
 
 var SubscribedMessagesMap map[uint32]*MapMessage
 var key_id uint32 = 0
