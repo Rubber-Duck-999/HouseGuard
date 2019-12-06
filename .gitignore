@@ -6,7 +6,7 @@
 /FaultHandler/src/golang.org/*
 /FaultHandler/src/gopkg.in/*
 /FaultHandler/bin/
-/FaultHandler/pkg/
+/FaultHandler/src/pkg/
 /CameraMonitor/build/
 /FaultHandler/config.yml
 *.project
