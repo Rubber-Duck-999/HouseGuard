@@ -3,6 +3,9 @@
 
 HouseGuard
 
+![GitHub Logo](/images/archiecture.png)
+Format: ![Alt Text](url)
+
 A project based on standalone on user controlled security system that can manage multi sensor inputs and handle external communication. Complete with its own network security and message broker design. 
 
 Uses rabbitmq with the amqp protocol to communicate between software components that have been partitiioned into functional boxes that have defined operations.
