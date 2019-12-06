@@ -3,7 +3,7 @@
 
 HouseGuard
 
-![Archiecture](/architecture.jpeg)
+![Architecture](/architecture.jpg)
 Format: ![Alt Text](url)
 
 A project based on standalone on user controlled security system that can manage multi sensor inputs and handle external communication. Complete with its own network security and message broker design. 
