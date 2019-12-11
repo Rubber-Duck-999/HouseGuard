@@ -17,7 +17,7 @@ import sys, time, json
 print("## Beginning EVM")
 connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
-channel.exchange_declare(exchange='topics', exchange_type='topic', durable=False)
+channel.exchange_declare(exchange='topics', exchange_type='topic', durable=True)
 key = 'request.access'
 key_publish = 'access.response'
 key_event = 'event.UP'
