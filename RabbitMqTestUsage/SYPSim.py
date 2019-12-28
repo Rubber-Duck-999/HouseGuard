@@ -18,7 +18,7 @@ print("## Beginning SYPSIM")
 connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
 channel.exchange_declare(exchange='topics', exchange_type='topic', durable=True)
-key_publish = 'Power.Notice'
+key_publish = 'Request.Power'
 key_event = 'Issue.Notice'
 #
 
@@ -27,12 +27,8 @@ result = channel.queue_declare('', exclusive=False, durable=True)
 queue_name = result.method.queue
 channel.queue_bind(exchange='topics', queue=queue_name, routing_key=key_event)
 print("Publishing to SYP")
-x = 0
-while x < 51:
-    y = str(x)
-    channel.basic_publish(exchange='topics', routing_key=key_publish, body=y)
-    x = x + 1
-    time.sleep(1)
+channel.basic_publish(exchange='topics', routing_key=key_publish, body="Wow")
+time.sleep(1)
 print("Waiting for Issue Notice")
 
 
