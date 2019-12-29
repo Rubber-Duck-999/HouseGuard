@@ -1,0 +1,5 @@
+{
+    "C_Cpp.default.configurationProvider": "go2sh.cmake-integration",
+    "cmake.configureOnOpen": true,
+    "cmake.sourceDirectory": "${workspaceFolder}/CamerMonitor"
+}
