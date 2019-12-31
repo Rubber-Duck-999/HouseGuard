@@ -21,13 +21,14 @@ set (INCL_DIR include)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -O3 -Wall")
 
 include_directories(${Boost_INCLUDE_DIRS} 
+                    /usr/local/include
                     ${PROJECT_SOURCE_DIR}/${INCL_DIR}
                     ${PROJECT_SOURCE_DIR}/boost)
                     
 link_directories(${Boost_LIBRARY_DIRS})
 # Important: Include all source files on this list
 set (SOURCE
-    ${SRC_DIR}/test.cc
+    ${SRC_DIR}/main.cc
 )
 
 link_directories(/usr/local/lib)
@@ -41,4 +42,6 @@ add_executable(${PROJECT_NAME} ${SOURCE})
 target_link_libraries(${PROJECT_NAME}
                        ${Boost_LIBRARIES} 
                        pthread
+                       amqpcpp
+                       event
                        Threads::Threads)

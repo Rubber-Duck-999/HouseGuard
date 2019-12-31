@@ -29,14 +29,11 @@ channel.queue_bind(exchange='topics', queue=queue_name, routing_key=failure_comp
 
 print("Beginning Subscribe")
 print("Waiting for notifications")
-count = 0
 
 def callback(ch, method, properties, body):
-    print("Received: " % (method.routing_key, body))
-    str = body.decode()
-    print("NACIntegrator: I think we received a message: " + str)
-    count = count + 1
-    print("Subscribe " + count)
+    print("Received: " + method.routing_key)
+    string = body.decode()
+    print("NACIntegrator: I think we received a message: " + string)
     
 
 channel.basic_consume(queue=queue_name, on_message_callback=callback, auto_ack=True)
