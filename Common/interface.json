@@ -12,13 +12,12 @@
   },
   "motion.response": {
     "severity": 5,
-  }
+  },
   "motion.detected": {
     "time": "12:20:40"
   },
   "failure": {
     "time":"14:56:00",
-    "type": "Camera",
     "severity": 1
   },
   "request.image": {
