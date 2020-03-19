@@ -10,7 +10,9 @@
     "time": "12:00:00",
     "severity": 2
   },
-  "motion.response": 5,
+  "motion.response": {
+    "severity": 5,
+  }
   "motion.detected": {
     "time": "12:20:40"
   },
