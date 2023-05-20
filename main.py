@@ -29,22 +29,28 @@ def getStock(URL):
         try:
             data = json.loads(page.content)
             if 'available' in data:
-                return True
+                if data['available']:
+                    return True
         except json.JSONDecodeError as error:
             print('Error decoding json: ' + error.msg)
             print(page.content)
     return False
 
-def getPI400():
+def getPI400PIMORONI():
     return getStock("https://shop.pimoroni.com/products/raspberry-pi-400-personal-computer-kit.js")
 
 def getPIZERO():
-    return getStock("https://shop.pimoroni.com/product/raspberry-pi-zero-essentials-kit.js")
+    return getStock("https://shop.pimoroni.com/products/raspberry-pi-zero-essentials-kit.js")
+
+def getPI400HUT():
+    return getStock("https://thepihut.com/products/raspberry-pi-400-personal-computer-kit.js")
 
 if __name__ == "__main__":
     topic = get_config()
     if len(topic) > 0:
-        if getPI400():
+        if getPI400PIMORONI():
             requests.post("https://ntfy.sh/" + topic, data="PI 400 is in Stock at Pimoroni 😀".encode(encoding='utf-8'))
         if getPIZERO():
             requests.post("https://ntfy.sh/" + topic, data="PI Zero is in Stock at Pimoroni 😀".encode(encoding='utf-8'))
+        if getPI400HUT():
+            requests.post("https://ntfy.sh/" + topic, data="PI 400 is in Stock at Pi Hut 😀".encode(encoding='utf-8'))
