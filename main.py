@@ -1,5 +1,27 @@
+#!/usr/bin/python3
+'''Python script to send '''
 import requests
 import json
+import logging
+import os
+
+
+def get_config():
+    '''Get configuration values'''
+    logging.info('# get_config()')
+    try:
+        if not os.path.isfile('config.json'):
+            return False
+        config_file        = open('config.json', "r")
+        config_data        = json.load(config_file)
+        return config_data['topic']
+    except IOError as error:
+        logging.error('File not available: {}'.format(error))
+    except KeyError as error:
+        logging.error('Key not available: {}'.format(error))
+    except TypeError as error:
+        logging.error('Type not available: {}'.format(error))
+    return ''
 
 def getStock(URL):
     page = requests.get(URL)
@@ -20,11 +42,9 @@ def getPIZERO():
     return getStock("https://shop.pimoroni.com/product/raspberry-pi-zero-essentials-kit.js")
 
 if __name__ == "__main__":
-    if getPI400():
-        print('PI 400 is in Stock at Pimoroni')
-    else:
-        print('PI 400 is not in Stock at Pimoroni')
-    if getPIZERO():
-        print('PI Zero Kit is in Stock at Pimoroni')
-    else:
-        print('PI Zero Kit is not in Stock at Pimoroni')
+    topic = get_config()
+    if len(topic) > 0:
+        if getPI400():
+            requests.post("https://ntfy.sh/" + topic, data="PI 400 is in Stock at Pimoroni 😀".encode(encoding='utf-8'))
+        if getPIZERO():
+            requests.post("https://ntfy.sh/" + topic, data="PI Zero is in Stock at Pimoroni 😀".encode(encoding='utf-8'))
